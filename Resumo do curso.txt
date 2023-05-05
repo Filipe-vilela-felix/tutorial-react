@@ -1,0 +1,191 @@
+		REACT
+
+aula_3: Folder Structure
+
+É composto por três pastas e quatro arquivos.
+
+Os arquivos são: 
+	package.json -> além de mostrar qual versão estou utilizando, também possui "scripts", que por sua vez, garante a execução do aplicativo;
+	package-lock.jason -> garante uma instalação consistente de suas dependencias;
+	Obs: os arquivos README.md e .gitignore não foram mencionados com importancia;
+
+As pastas são:
+	node_modules -> esta é a pasta na qual todas as dependencias são instaladas;
+	public -> dentro dela se encontram três arquivos:
+		1º manifest.json -> se preocupa com aplicativos da web fora do nosso escopo;
+		2º faviction.ico -> onde se encontra a guia do navegador (nada específico);
+		3º index.html -> não será adcionado nenhum código nesse arquico, no máximo algumas alterações na tag head. A tag div com id="root", serve para controlar a interface com o usuário, sendo o responsavel final para com este fim;
+	src (origem) -> é a pasta onde mais trabalharei no desenvolvimento:
+		1º O ponto de partida para o desenvolvimento, é o arquivo index.js;
+		2º O arquivo App.js é o responsável pelo HTML exibido no navegador (representa a visualização que vemos no navegador);
+		3º App.css -> é a estilização do html. Contendo classes no componente do aplicativo (app.js);
+		4º App.test.js -> para testes de unidade (contendo um caso de teste simples);
+		5º Index.css -> aplica estilos para a tag do corpo (body);
+		6º Logotipo SVG -> referenciado no componente do aplicativo;
+		7º serviceWorker.js -> preocupado com os serviços da web progressivos; 
+
+
+aula_4: Components
+
+Um componente representa uma parte da interface do usuário.
+Ex: um componente seria para cabeçalho, um para navevação, um para o corpo, um para o rodape e um para o "todo". E esse "todo" seria o 'root(App)' (componente de aplicativo);
+
+Como vantagem, os componentes são reutilizaveis. Ou seja, o mesmo componente pode ser usado com propriedades diferentes para exibir informações diferentes.
+
+Como o componente traduz o código em nosso aplicativo?
+	O componente geralmente é colocado em um arquivo JS. Por exemplo, o componente AppComponent é colocado em um App.js
+
+Existem dois tipos de componentes: 
+	Stateless Functional Componente (Componente Funcional Sem Estado):
+		Apresenta funções JavaScript que retornam HTML;
+		Ex:	function Welcome (props) {
+			   return <h1>Hello, {props.name}</h1>;
+			}
+	Stateful Class Component (Componente De Classes Com Estado): 
+		Trabalha com classe de componente com extensão de classe;
+		Devem conter um método de renderização, que por sua vez, retornam HTML;
+		Ex:	class Welcome extends React.Component {
+			   render() {
+			      return <h1>Hello, {this.props.name}</h1>;
+			   }
+			}
+
+
+aula_5: Functional Components (presente no arquivo Greet.js)
+
+Os componentes funcionais são apenas funções JavaScript que podem receber propriedades/atributos chamados de "props" e retronar HTML que descreve a interface do usuário.
+
+Criando componentes funcionais:
+	1º retiro todo meu HTML da pasta App.js, com excessão da div className="App";
+	2º crio uma pasta de nome "components" dentro do meu "src";
+	3º Neste arquivo, importo o React;
+	4º Crio uma função "Greet", retornando um "Hello Vishwas";
+
+Feito isso, precisarei conecta-lo ao resto do aplicativo.
+Para isso, preciso exportar a função greeet e importa-la em App.js. E em seguida, inclui-la no componente do aplicativo;
+Em seguida, especificamos o componente com um HTML personalizado com um tag do prórprio nome. E se não houber conteúdo entre as tags, posso usar fechamento automatico;
+
+Porém, uma convenção de boa prática, é usar uma função de "seta" para defini-las. Tornando a abordagem mais concisa que a anterior.
+	Ex: const Greet = () => <h1>Hello Vishwas</h1>
+Obs: Esta abordagem possui vantagens adcionais;
+
+Diferença entre exportações:
+	Exportação padrão: 
+		export default Greet;
+		Exportação ao final do código.
+		Obs: Neste, eu não preciso importat o arquivo com o msm nome. Só a direção (from) já é o suficiente. Ex: import MyGreet from './component/Greet';
+	Exportação nomeada:
+		export const Greet = () => <h1>Hello Vishwans</h1>;
+		Exportação na linha da função.
+		Obs: Se faz necessária a importação idêntica ao nome do componente e entre chaves. Ex: import {Greet} from './component/Greet';
+
+Obs: DEVO USAR A ABORDAGEM DE COMPONENTE FUNCIONAL SEMPRE QUE POSSÍVEL;
+
+
+aula_6: Class Components (presente no arquivo Welcome.js)
+
+São formadas por ES6;
+Podem opcionalmente receber (props) como entrada e retornar HTML;
+Além dos props, um componente de classe pode manter um estado ("state") interno privado, ou seja, pode conter informações privadas e usa-las pra descrever a interface do usuário;
+
+Sempre em que eu criar um componente de classe, devo incluir duas importações, o React + a classe de componentes:
+	import React, { Component } from 'react'
+
+Para uma classe se tornar um component de React, existem duas etapas:
+	1º Extender a classse de componente do React:
+		Ex: ...extends Component {
+
+		    }
+	2º Implementar um método de renderização que retornará nulo ou algum método;
+		Ex: class Welcome extends Component {
+		       render() {
+		       	  return <h1>Class Component</h1>
+		       }
+ 		    }
+
+
+aula_7: Hooks Update
+
+Os ganchos permitem usar diferentes recursos do React em seus componentes.
+Você pode usar os ganchos embutidos ou combiná-los para construir o seu próprio.
+
+
+aula_8: JSX
+
+JavaScript XML (JSX) - é uma extensão para a sintaxe da linguagem JS.
+A biblioteca React é uma extensão para escrever XML como código para elementos e comoponentes.
+As tags JSX tem atrubutos de nome, de tag e de filhos.
+JSX não é uma necessidade para escrever aplicativos React, porem o torna mais simples e elegante.
+JSX se traduz em JS puro que é entendido pelos navegadores.
+
+Diferença de um componente com JSX vs sem JSX:
+	Com JSX:
+		const Hello = () => {
+		   return (
+		      <div>
+			<h1>Hello World</h1>
+		      </div>
+		   )
+		}
+	Sem JSX:
+		Para fazer isso, a biblioteca React fornece um método de criação de elemento, veja abaixo.
+		const Hello = () => {
+		   return React.createElement(
+			'div', 							
+			{id: hello}, 
+			React.create.Element('h1', null, 'Hello Vishwas')
+			)
+		}	
+		A diferenca é que o código agr muda para retornar React.createElement(), aceitando no mínimo três parametros:
+			O primeiro parâmetro é a string que especifica a tag HTML a ser renderizada pelo nosso exemplo;
+			O segundo, é para propriedade adcional. Quando não há, o resultado é "null";
+			O terceiro são os filhos (que podem ser mais de um, inclusive, mais tres parametros);
+
+		O segundo parâmetro basicamente é um objeto de pares chave-valor que serão aplicados ao elemento. Ex: id="hello"; 
+
+
+aula_9: Props
+
+O React nos permite duplicar um componente quantas vezes desejarmos, porém, tal caracteristica nao é tao usual se nao me permitir alterar alguns detalhes.
+Por esse motivo, usa-se o "props" (atributo);
+
+
+aula_10: State
+
+Assim como o props, ele tambem é capaz de influenciar o que é renderizado na tela.
+
+Props vs State:
+	Props:
+		- São passadas para o componente;
+		- Parametros de função;
+		- São imutáveis;
+		- Em componentes funcionais -> props;
+		- Em componentes de classes -> this.props;
+
+	State:
+		- É gerenciado com o componente:
+		- Variabeis declaradas no corpo da função;
+		- O estado pode ser alterado;
+		- Em componentes funcionais -> useState Hook;
+		- Em componentes de classe -> this.state;
+
+No state, se faz necesário a criação de um objeto de estado, inicializa-lo. Geralmente é feita dentro da classe constructor().
+E dentro dele, chamamos o método super().
+Em seguida, criamos nosso objeto de estado -> this.state = {}.
+Dentro de nosso objeto, inicializo uma propriedade e crio um valor de estado para ela;
+	Ex: constructor() {
+		super();
+		this.state = {
+		   message: 'Wellcome visitor'
+		}
+	    }
+
+O método setState = ({}) serve para alterar o estado já criado;	
+
+aula_11: setState (presente no arquivo Counte.js)
+
+Sempre faça uso do setState e nuna modifique o estado diretamente.
+Se o código tiver que ser executado após o estado ter sido atualizado, coloque esse código na função de retorno de chamada que é o segundo argumanto para o referido metodo de estado.
+Quando você tiver que atualizar o estado com base no valor do estado anterior, passe uma função como um argumento em vez do objeto regular.
+
+	
