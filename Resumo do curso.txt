@@ -195,6 +195,7 @@ aula_12: Desestruturing props and state
 
 A desestruturaçao é um recurso es6 que torna possível descompactar arrays ou propriedades de objetos em variáveis distintas.
 Em React, props de desestruturação e estado melhoram a legibilidade do código. Podendo ser feita tanto no componente funcional, quanto no componente de classe.
+	
 	Componentes Funcionais (existem duas maneras):
 		1ª) É estrutura-lo no próprio parâmetro da função, então, ao invés de apenas inserir (props), teremos parenteses e dentro deles, chaves, para inserirmos as variáveis separadas por vírgula no lugar de props;
 			Ex: const Greet = ({name, heroName}) => {
@@ -226,6 +227,46 @@ Em React, props de desestruturação e estado melhoram a legibilidade do código
 				   )
 				}
 			     }
+
+
+aula_13: Event Handling (Tratamento de Eventos)
+
+Será aprendido com lidar com eventos (click, por exemplo) no React.
+Obs: Os eventos de React são nomeado usando letras maiúsculas em vez de minúsculas. Ex: <FunctionClick.js /> (este, localizado no App.js);
+
+	Nos Componentes Funcionais:
+		Ex: function  FunctionClick() {
+			   
+			   function clickHandle() {
+				console.log(Button Clicked)
+			   }
+			   
+			   return(
+			      <div>
+			         <button onClick={clickHandle}>Click</button>
+			      </div> 
+				)
+			}
+		Assim como feito em "Counter.js", por conta do JSX, você passa a função como manipulador de eventos, e não como uma simples string,
+			então, em vez do manipulador de cliques "clickHandle()" ser entre aspas, teremos o manipulador de cliques entre chaves.
+		Nota-se que na clicagem do botão, não adiciono os parenteses, pois não quero que seja uma chamada de função. Queremos que o manipulador seja uma função, e não uma chamada de função.
+			Caso contrário, o manipulador ficará chamando o resultado antes mesmo da clicagem do botão.
+	
+	Nos Componentes de Classe:
+		É parecido com os Componentes Funcionais. A única diferença são propriedades já conhecidas:
+		Ex: class ClassClick extends React.Component {
+				clickHandle() {
+					console.log("Clicked the button")
+				}
+				
+				render() {
+					return(
+						<div>
+							<button onclick={this.clickHandle}>Click me</button>
+						</div>
+					)
+				}
+			}
 		
 		
 
