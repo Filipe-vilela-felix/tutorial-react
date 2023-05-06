@@ -267,8 +267,119 @@ Obs: Os eventos de React são nomeado usando letras maiúsculas em vez de minús
 					)
 				}
 			}
+
+
+aula_14: Binding Event Handlers (Manipuladores de Eventos em Vinculação)
+
+Aprenderemos a como vincular manipuladores de eventos em componentes de React.
+O motivo pelo qual vinculamos manipuladores de eventos em React, é puramente por causa da maneira como essa palavra-chave(this) funciona em JavaScript, e não por causa da maneira como o React funciona.
+	Ex do que não fazer: class EventBind extends Component {
+    
+							constructor() {
+								super()
+								this.state = {
+									message: 'Hello'
+								}
+							}
+
+							clickHandler() {
+								this.setState({
+									message: 'Goodbye!'
+								})
+							}
+							
+							render() {
+								return (
+									<div>
+										<div>{this.state.message}</div>
+										<button onClick={this.clickHandler}>Click</button>
+									</div>
+								)
+							}
+						}
+
+	Após a criação do botão, criamos uma propriedade de estado chamada message e a vinculamos à interface do usuário;
+	Após isso, adicionaremos um atributo "onClick" e sua respectiva função no botão;
+	Ao tentar rodar o código desta maneira, perceberei que aparecerá a seguinte mensagem:
+			ERROR: Não é possível ler o estado do conjunto de propriedades indefinido; 		
+	Então, se eu colocar minha palavra-chave (de um componente de classe), no caso, a palavra "this" em um console.log(), no lugar do atributo "this.setState", será mostrado no console do navegador, a palavra indefined. Indicando um não reconhecimento da mesma: 
+		Ex: clickHandler() {
+				/*this.setState({
+					message: 'Goodbye!'
+				})*/
+				console.log(this)					
+			}
+		Obs: Este é um comportamento típico do JS
+
+IMPORTANTE: Lembre-se de que a palavra-chave é indefinida em um manipulador de eventos. E é essa razão pela qual a ligação de evento é necesária em Componentes de Classe React;
+
+Existem várias formas de vinculação de eventos. E nesta aula, todos eles serão examinados!
+	Eis a baixo, todas as opções:
+		1ª) Temos que usar a palavra-chave bind, que significa "ligação", e vincular o manipulador no método render(). (NÃO ACONSELHAVEL em projetos garndes)
+				Ex:	render() {
+						return (
+							<div>
+								<div>{this.state.message}</div>
+								<button onClick={this.clickHandler.bind(this)}>Click</button>
+							</div>
+						)
+					}
+				Embora esta funcionalidade funcione perfeitamente, cada atualização no estado fará com que o componente seja novamente renderizado, isso por sua vez, gerará outro manipulador de eventos em cada redereização.
+				Embora o impacto no desempenho não seja grave em aplicativos pequenos. Pode ser problemático entre aplicativos grandes e em componentes que contém componentes filhos aninhados.
 		
+		2ª)	Usar função de seta no método render(), dentro do onclick:	(MAIS FÁCIL, PORPÉM, NAO ACONSELHAVEL em projetos garndes ou components com filhos)
+					É basicamente chamar o manipulador de eventos no corpo da função de seta, dentro do onClick.
+					Ex: render() {
+							return (
+								<div>
+									<div>{this.state.message}</div>
+									<button onClick={() => this.clickHandler()}>Click</button>
+								</div>
+							)
+						}
+					Observe que não precisamos de chaves ou a palavra-chave return para simbolizar o corpo da função de seta. E isto ocorre porque o corpo da função é uma única instrução.
+					Porém, semelhante a primeira abordagem, isso também tem implicações de desempenho em alguns cenários.
+
+		3ª) Vinculação no constructor (MAIS ACONSELHAVEL):
+				Essa abordagem lida com a ligação do manipulador de eventos no constuctor() em oposição à ligação no método render().
+				Então no constructor(), nós adicionamos uma linha em que adicionaremos: this.clickHandler = this.clickHandler.bind(this);
+				Ex: constructor() {
+						super()
+						this.state = {
+							message: 'Hello'
+						}
+						this.clickHandler = this.clickHandler.bind(this)
+					}
+
+					clickHandler() {
+						this.setState({
+								message: 'Goodbye!'
+						})
+					}
+							
+					render() {
+						return (
+							<div>
+								<div>{this.state.message}</div>
+									<button onClick={this.clickHandler}>Click</button>
+							</div>
+						)
+					}
+				Diferentemente das outras abordagens, é que nessa a vinculação só ocorre uma única vez no constructor, isto é melhor, comparado a vinculação no método render().
 		
+		4ª) Usar uma função de seta como uma propriedade de classe.	(RECURSO AINDA EXPREIMENTAL)
+				Basicamente, se trata em mudar a maneira como você define seu método de classe, nesse caso, o 	clickHandler() {
+																													this.setState({
+																														message: 'Goodbye!'
+																													})
+																											   	}
+				passa a ser igual a uma função de seta, e dentro dela, a mudança de estado:	clickHandler = () => {
+																								this.setState({
+																									message:'Goodbye!'
+																								})
+																							}
+
+
 
 
 	
