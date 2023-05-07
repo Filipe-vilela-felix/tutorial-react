@@ -380,6 +380,86 @@ Existem várias formas de vinculação de eventos. E nesta aula, todos eles ser�
 																							}
 
 
+aula_15: Methods as props
 
+Vimos como componentes pai podem passar props para seus componentes filhos. Nos dados no componente pai quando passado como props está disponível nos componentes filhos.
+Agora, e se um componente filho quisesse se comunicar com o componente pai? Bom...isso ainda seria feito com props. Mas desta vez, passamos uma referência a um método como props para o componente filho.
+	Ex's apresentados nos arquivos "ParentComponent.js" e "ChildComponent.js":
+		1º Criar um componente Pai:
+			class ParentComponents extends React.Component {
+    
+				constructor() {
+					super()
+					this.state = {
+						parentName: 'parent'
+					}
+					this.greePatent = this.greetParent.bind(this)
+				}
 
+				greetParent() {
+					alert(`Hello ${this.state.parentName}`) // Este é um recurso do es6/es7 que substitui a concatenação
+				}
+				
+				render() {
+					return(
+						<div>
+							<ChieldComponent />
+						</div>
+					)
+				}
+			}
+			Dentro do render(), principalmente da <div>, receberá um componente filho.
+		
+		2º Criar um componente Filho:
+			function ChildComponent() {
+				return(
+					<div>
+						<button>Gree Parent</button>
+					</div>
+				)
+			}
+
+O intuito desses códigos é, ao clicarmos no botão no componente filho, desejamos executar o método definido no componente pai.
+Basicamente, um componente filho chama um método de componente pai usando props. A única diferença desta vez é que passamos o próprio método como um prop para o componente filho. Veja abaixo:
+	 render() {
+        return(
+            <div>
+                <ChildComponent greetHandler={this.greetParent} />
+            </div>
+        )
+    }
+Certifique-se de não adicionar os parênteses, estamos passando uma referência ao método pai como prop, chamado de greetHandler, em pt-br, manipulador de suadação.
+Agora, podemos obter essa referência em nosso componente filho:
+	function ChildComponent(props) {
+		return(
+			<div>
+				<button onClick={props.greetHandler}>Greet Parent</button>
+			</div>
+		)
+	}
+	
+Resumindo o que foi feito:
+	Chamamos com sucesso um método no componente Pai a partir de um botão no componente Filho, ignorando o método prosp para o componente Filho.
+
+Agora, veremos como passar um parâmetro ao chamar um método Pai do componente Filho, e é aqui que uma função de seta na declaração de retorno se torna útil.
+A sintaxe da função de seta é a mais simples maneira de passar parâmetros do componente Filho para o componente Pai:  	
+	function ChildComponent(props) {
+		return(
+			<div>
+				<button onClick={() => props.greetHandler()}>Greet Parent</button>
+			</div>
+		)
+	}
+Agora, podemos passar um parâmetro, no caso, uma string, do Filho pra o pai:
+	function ChildComponent(props) {
+		return(
+			<div>
+				<button onClick={() => props.greetHandler("child")}>Greet Parent</button>
+			</div>
+		)
+	}
+E por fim, no método presente no elemento pai, passaremos esse parametro para ele:
+	greetParent(childName) {
+        alert(`Hello ${this.state.parentName} from ${childName}`)
+    }
 	
