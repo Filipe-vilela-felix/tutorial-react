@@ -526,3 +526,18 @@ Uma alteração que pode ser feita se desejar, é mantendo a declaração de ret
 
 Obs: Normalmente, teremos uma lista de objetos com algumas propriedades que devem ser renderizadas. E em tais casos é sempre uma boa ideia refatorar o JSX em um componente separado.
 		E então, usar o método .map JSX; ESTE COSTUMA SER O PADRÃO;
+
+
+aula_18: List and Keys
+
+- Uma chave é um atributo de string especial que você precisa incluir para criar listas de elementos;
+- As chaves fornecem aos elementos uma identidade estável;
+- As chaves ajudam ao React a identificar quais item que foram alterados, adicionados ou removidos;
+- Isso resulta em uma atualização muito mais eficiente da interface do usuário;
+
+Cada item de uma lista renderizada deve ter um prop chamado key (chave). E o valor desse prop deve ser único dentro da lista.
+Então vamos adicionar ess prop a cada item de nossa lista.
+Sendo assim, dentro do método .map, vou adicionar a chave prop.
+	Ex: const personList = persons.map(person => <Person key={person.id} person={person} />);
+
+Obs: Os props principais não são aceitos nos componentes filhos. Servem apenas para renderizar a lista com eficiência;
