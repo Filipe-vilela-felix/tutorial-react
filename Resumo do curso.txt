@@ -492,3 +492,37 @@ Existem 4 abordagens diferentes:
 		Este último é apenas um caso específico da abordagem do operador ternário. Quando você deseja renderizar algo ou nada, usa-se o operador de curto circuito.
 		4.1) Dentro do render(), crio um return onde digitarei o this.state criado, e sem seguida, adicionarei um && (indica "e"...) mais o div que desejo que ele incremente.
 			Se o this.state criado foi false, a operacao seguida do && nao ocorrera. E nada será renderizado.
+
+
+aula_17: List redering
+
+Será aprendido a repetir algum HTML para cada item de uma lista criada.
+Mas antes...
+	Podemos usar o metodo .map para iterar rapidamente de uma array/matriz e retornar uma nova array/matriz com as alterações desejadas.
+	O método map() invoca a função callback passada por argumento para cada elemento do Array e devolve um novo Array como resultado:
+		Ex: const array1 = {1, 4, 9, 16};
+			consta map1 = array.map(x => x * 2);
+			console.log(map1);
+			// Expexted output: Array [2, 8, 18, 32]
+O método .map será usado para renderizar a lista de nome, por exemplo.
+Obs: O método .map é um código JavaScript e precisa ser avaliado entre chaves no JSX.
+Ex: function NameList() {
+    	const names = ["Bruce", "Clark", "Diana"]
+		return(
+			<div>
+				{
+					names.map(name => <h2>{name}</h2>)
+				}
+			</div>
+		)
+	}
+Uma alteração que pode ser feita se desejar, é mantendo a declaração de retorno simples, movendo a lógica de renderização da lista:
+	Ex: function NameList() {
+			const names = ["Bruce", "Clark", "Diana"];
+			const nameList = names.map(name => <h2>{name}</h2>);
+
+			return nameList;
+		}
+
+Obs: Normalmente, teremos uma lista de objetos com algumas propriedades que devem ser renderizadas. E em tais casos é sempre uma boa ideia refatorar o JSX em um componente separado.
+		E então, usar o método .map JSX; ESTE COSTUMA SER O PADRÃO;
