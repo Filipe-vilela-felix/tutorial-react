@@ -463,3 +463,32 @@ E por fim, no método presente no elemento pai, passaremos esse parametro para e
         alert(`Hello ${this.state.parentName} from ${childName}`)
     }
 	
+
+aula_16: Conditional Rendering (Renderização Condicional)
+
+A Renderização Condicional serve para acultar aguns elementos HTML dependendo de suas condições.
+Obs: Antes de iniciar as abordagens no código, crio um Componente de Classe e adiciono um this.state e uma propriedade no mesmo.
+Existem 4 abordagens diferentes:
+	1ª) If/else:
+		1.1) Quero que minha mensagem seja renderizada condicionalmente com base no estado de login de teste;
+		1.2) Crio um if/else com base na propriedade do meu state. Desenvolvendo condições que serão renderizadas no navegador;
+
+	2ª) Element Variables (Variáveis de elemento):
+		Este método me ajudará a renderizar todo o componente ou uma parte dele.
+		2.1) No render(), crio uma variavel que nao recebe parametro;
+		2.2) Crio um if/else que tera como parametro o this.state criado e  contera em seu corpo a variavel criada, recebendo uma mensagem que sera renderizada, dependendo do resultado;
+		2.3) Faço um return() que conterá a variavel criada (entre aspas no codigo);
+
+		Obs: Esta abordagem é melhor que a primeira;
+
+	3ª) Ternary Conditional Operator (Operador condicional ternário):
+		O beneficio dessa abordagem, é que ela pode ser usada dentro do JSX.
+		3.1) Dentro do render(), crio um return onde digitarei o this.state criado, e em seguida, adicionarei apos ele um ponto de interrogação (simbolizando uma pergunta de sim ou nao);
+		3.2) Após o ponto de interrogação, entre parenteses adicionarei a div que corresponde a resposta verdadeira. E em seguida, um "dois pontos", representando o contraponto a seguir;
+		3.3) Após os "dois pontos", indicando um contraponto, adcionarei a segunda div que corresponde a uma resposta falsa;
+			  
+
+	4ª) Short curcuit operator (Operador de curto circuito):
+		Este último é apenas um caso específico da abordagem do operador ternário. Quando você deseja renderizar algo ou nada, usa-se o operador de curto circuito.
+		4.1) Dentro do render(), crio um return onde digitarei o this.state criado, e sem seguida, adicionarei um && (indica "e"...) mais o div que desejo que ele incremente.
+			Se o this.state criado foi false, a operacao seguida do && nao ocorrera. E nada será renderizado.
