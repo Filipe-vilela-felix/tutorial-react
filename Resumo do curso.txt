@@ -646,7 +646,7 @@ aula_22: Component Lifecycle Methods (Métodos de Ciclo de Vida dos Componentes)
 Obs: Esses métodos não funcionam em um ciclo de vida funcional;
 Obs: Os métodos a seguir são a partir da atualização 16.4;
 
-Os métodos de ciclo de vide de um componente são classificados em 4 fases:
+Os métodos de ciclo de vida de um componente são classificados em 4 fases:
 	1ª) Mounting (Montagem):
 		São chamados quando uma instância de um componente está sendo criada e inserida no DOM.
 		Durante a fase de montagem, temo 4 construtores de métodos:
@@ -674,3 +674,36 @@ Os métodos de ciclo de vide de um componente são classificados em 4 fases:
 		Para o tratamento de erros, temos dois métodos:
 			1º) static getDerivedStateFromError (significa: um método estático obtenha o estado derivado do erro);
 			2º) componentDidCatch (significa: o componente detectou);
+
+
+aula_23: Component Mounting Lifecycle Methods (Métodos de Ciclo de Vida de Montagem de Componentes)
+
+São métodos chamados quando uma instancia de um componente está sendo criada e inserida no DOM. 
+E vamos passar por eles na ordem que são invocados.
+
+1º) Constructor(props):
+	- É uma função especial que será chamada sempre que um novo componente for criado.
+	Para que serve o constructor()?
+		- É perfeito para inicializar os estados e vincular os manipuladores de eventos à intancia de classe.
+	O que fazer em um constructor()?
+		- Basicamente, causar efeitos colaterias. Ex: nunca fazer solicirações HTTP (http request) em um constructor;
+	
+	- Ao definir meu constuctor(), devo sempre chamar uma função especial, ex: super;
+		Isso chamará o constructor() de classe base em nosso componente. Temos acesso a esse .props somente depois de termos incialmente chamado super() nos porps como argumento.
+	- O constructor() é o único lugar onde eu devo aterar ou definir o estado diretamente sobrescrevendo esses campos de estados de ponto em todos os outros senários.
+
+2º) static getDerivedStateFromProps(props, state): 
+	- A documentação classifica esse método como um método de ciclo de vida raramente usado.
+	- Este método é basicamente usado quando o estado do componente depende de mudanças em props ao longo do tempo.
+	- Nesse método, NÃO devo causar efeitos colaterais. Ex: buscar dados de um endpoint.
+
+3º) render():
+	- É o único método necessário em um componente de classe.
+	- Nele, nós simplesmente lemos .props & state e o return JSX que descreve a interface do usuário.
+	- Neste, NÃO devo alterar o estado do componente ou interagir com o DOM, ou fazer qualquer chamadas AJAX.
+	- Os métodos dos ciclos de vida dos componentes filhos também são executados.
+
+4º) componenteDidMount():
+	- Este método será chamado apenas uma vez em todo ciclo de vida de um determinado componente e é invocado imediatamente após um componente e todos os componente filhos terem sido renderizados.
+	- Este método é o lugar perfeito para causar efeitos colaterais. Ex: eu posso interagir com o DOM ou executar qualquer chamada AJAX para carregar dados de load.
+	- É um bo lugar para executar a inicialização que requer DOM e carregar dados fazendo solicitações de rede.
