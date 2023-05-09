@@ -599,5 +599,43 @@ Algumas opções para estilizar componentes de React:
 	Como funciona o adicionar dessa propriedade no corpe return(): className={style.(nome da classe)}
 	Obs: Nota-se que há uma diferença neste modo em relação ao stylesheet. 
 
-	Uma vantagem de usar .modulo.css é que as classes são localmente definidas por padrão 
+	Uma vantagem de usar .modulo.css é que as classes são localmente definidas por padrão.
 
+
+aula_21: Basic of Form Handling (Noções básicas de manuseio de formulários):
+
+Em um componente de entrada, a valor do mesmo pode ser definifo como uma propriedade de estado.
+Existe um ciclo que define esse valor inical do estado:
+	Ex: 
+		1º) crio um value={} no input, que recebera um this.state;
+		2º) crio um um atributo no input que conterá um objeto, em que dentro dele, estará o setState;
+O React sempre terá acesso ao estado do componente que reflete valores atualizados no elemento do formulário
+
+Se criarmos um arquivo para inserir um componente de formulario, onde nele estarão apenas um label com um texto e um simples input. Não o tornará um componente controlado pelo React.
+Para isso...vamos passar por duas etapas:
+	1ª) Adicione um elemento HTML;
+	2ª) Atribua um estado de componente ao valor do elemento;
+	3ª) Atribua uma manipulador inalterado que atualiza o estado. 
+Resumindo: 
+	- Temos o nome de usuário como uma propriedade de estado, que é fornecida como um valor para o atributo value={} no elemento de entrada. 
+	- Sempre que houver uma alteração em que o novo valor é propagado para lidar com a alteração do nome de uniário, que define de volta a propriedade de estado username. Ele receberá um valor atualizado
+		atravez de event.target.value. Obs: esse .event é uma propriedade declarada na mudança de estado;
+	- E quando o estado é dito, o método render() é chamado novamente e o novo valor está disponivel para a propriedade value={}
+	Ex: constructor() {
+			super()
+			this.state = {
+				username: ""
+			}
+		}
+
+		handleUsernameChange = (event) => {
+			this.setState({
+				username: event.target.value
+			})
+		}
+
+		<input 
+            type="text" 
+            value={this.state.username} 
+            onChange={this.handleUsernameChange} 
+        />
