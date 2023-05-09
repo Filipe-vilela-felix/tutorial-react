@@ -639,3 +639,38 @@ Resumindo:
             value={this.state.username} 
             onChange={this.handleUsernameChange} 
         />
+
+
+aula_22: Component Lifecycle Methods (Métodos de Ciclo de Vida dos Componentes)
+
+Obs: Esses métodos não funcionam em um ciclo de vida funcional;
+Obs: Os métodos a seguir são a partir da atualização 16.4;
+
+Os métodos de ciclo de vide de um componente são classificados em 4 fases:
+	1ª) Mounting (Montagem):
+		São chamados quando uma instância de um componente está sendo criada e inserida no DOM.
+		Durante a fase de montagem, temo 4 construtores de métodos:
+			1º) constructor();
+			2º) static getDerivedStateFromProps - (significa: método estático que obtém estado derivado de props);
+			3º) render();
+			4º) componentDidMount;
+
+	2ª) Updating (Atualização):
+		São chamados quando um componente está sendo renderizado novamente como resultado de alterações em seus props ou state.
+		Durante a fese de atualização, temos 5 métodos:
+			1º) static getDerivedStateFromProps - (significa: metodo estatico obtém 'derivar o estado de props');
+			2º) shouldComponentUpdate - (significa: deve atualizar o componente);
+			3º) render();
+			4º) getSnapshotBeforeUpdate - (significa: instantaneo antes da atualização);
+			5º) componentDidUpdate - (significa: o componente foi atualizado);
+
+	3ª) Unmounting (Demontagem):
+		São chamados quando um componente está sendo removido do DOM.
+		Durante a desmontagem, temos apenas 1 métod:
+			componentWillUnmount - (significa: o componente foi desmontado);
+
+	4ª) Error Handing (Tratamento de Erros):
+		São chamados quando há um erro de renderização em um método de ciclo de vida ou no constructor de qualquer componente filho.
+		Para o tratamento de erros, temos dois métodos:
+			1º) static getDerivedStateFromError (significa: um método estático obtenha o estado derivado do erro);
+			2º) componentDidCatch (significa: o componente detectou);
