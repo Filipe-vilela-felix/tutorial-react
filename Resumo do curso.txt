@@ -541,3 +541,22 @@ Sendo assim, dentro do método .map, vou adicionar a chave prop.
 	Ex: const personList = persons.map(person => <Person key={person.id} person={person} />);
 
 Obs: Os props principais não são aceitos nos componentes filhos. Servem apenas para renderizar a lista com eficiência;
+
+
+aula_19: Index as Key Anti-pattern (Índice com anti-padrão de chave)
+
+Ao ler documentos de React, notarei que boa parte dos exemplos que os desenvolvedores usam em listas, em sua chave, usam-a como index para renderização da lista. Mantendo o código simples e elegante.
+Como usar index como chave de uma lista e que problemas eu posso enfrentar quando usa-lo.
+O index é passado como segundo parâmetro para a função de chave dentro do metodo .map, e esse index é usado como valor para o prop. 
+	Ex: const nameList = names.map((name, index) => <h2 key={name}>{index} {name}</h2>);	
+
+Porém, usar o index como uma chave pode causar sérios problemas de interface de usuário em determinados cenários;
+
+Usar o index como uma chave só se torna viável desde que minha lista satisfaça certas condições:
+	1ª) Os itens da minha lista não tem um id único;
+	2ª) A lista seja uma lista estática e não mude;
+		Ex: Você nunca adiciona itens à lista ou remove itens da lista;
+	3ª) A lista nunca será reordenada ou filtrada;
+		Ex: Classificação com base em valor de coluna ou filtragem com base nas entradas do usuário;
+
+Quando minha lista satisfazer não apenas uma, mas todas as tres condições, eu possousar o index como segurança como uma chave na maioria das vezes
