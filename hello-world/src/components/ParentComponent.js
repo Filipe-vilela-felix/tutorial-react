@@ -12,7 +12,7 @@ class ParentComponent extends React.Component {
     }
 
     greetParent(childName) {
-        alert(`Hello ${this.state.parentName} from ${childName}`) // Este é um recurso do es6 que substitui a concatenação
+        alert(`Hello ${this.state.parentName} from ${childName}`) // Este é um recurso do es6/es7 que substitui a concatenação
     }
     
     render() {

@@ -707,3 +707,65 @@ E vamos passar por eles na ordem que são invocados.
 	- Este método será chamado apenas uma vez em todo ciclo de vida de um determinado componente e é invocado imediatamente após um componente e todos os componente filhos terem sido renderizados.
 	- Este método é o lugar perfeito para causar efeitos colaterais. Ex: eu posso interagir com o DOM ou executar qualquer chamada AJAX para carregar dados de load.
 	- É um bo lugar para executar a inicialização que requer DOM e carregar dados fazendo solicitações de rede.
+
+
+aula_24: Updating Lifecycle Methods (Método de Estilo de Vida Atualizados)
+
+São metodos chamados quando um componente está sendo pré-renderizado devido a alterações em porps ou no estado.
+Vamos passar por eles na ordem em que são invocados.
+
+1º) static getDerivedStateFromProps(props, state):
+	- Este recebe props e state como seu parametro e tem que retornar null ou um objeto que representa o estado atualizado do componente.
+	- Este método é usado toda vez que um componente é renderizado novamente.
+	- E como dito antes, é usado quando o estado depende dos props do componente.
+	- Nesse método, NÃO devo causar nenhum efeito colateral e obter o estado estanho dos porps.
+	- É um dos métodos mais RARAMENTE usados na fase de atualização!
+
+2º) shouldComponentUpdate(nextProps, nextState): 
+	- Este método recebe props atualizados e o estado.
+	- O propósito deste método é claro a partir de seu nome. Ele determina se o componente deve ser renderizado novamente ou não.
+		Por padrão, todos os componentes serão renderizados novamente sempre que os props que eles recebem ou seus estados, mudarem.
+	- Este método pode prevenir esse comportamento padrão retornando false.
+	O que se pode fazer nesse método, é comparar as propriedades existentes e os valores de estados com as proximas propriedades e valores de estado, 
+		e retornar true ou false para permitir que o React saiba se o componente deve atualizar ou não. Portanto, este método é basicamente para otimização de desempenho.
+	- Deve ser evitado quaisquer efeitos colaterias ou chamando o referido método de estado.
+	- É classificado como um método RARAMENTE usado na documentação ofincial do React.
+
+3º) render():
+	- É um método NECESSÁRIO.
+	- Ler props & state e reotrna JSX, descrevendo a UI.
+	- Evitar alterar o estado ou interagir com o DOM nesse método.
+
+4º) getSnapshotBeforeUpdate(prevProps, prevState):
+	- Este método aceita testes anteriores e state anterior como parâmetros, e é chamado logo antes da alterações do virtual DOM. Devem ser refletidos no DOM.
+	- Este método é RARAMENTE usado de acordo com a documentação do React.
+	- Eu usaria esse método para capturar algumas informações do DOM. Ex: eu posso ler a posição de rolagem do usuário e após a atualiazção, manter essa posição de rolagem, executando alguns calculos;
+	- Este método retornará null ou um valor. O valor retornado será passado como o terceiro parâmtro para o próximo método sobre o qual falaremos. Portanto, obtenha um instantânio antes da atualização
+		usado para ler o estado atual do DOM e retornar um valor ou não.
+
+5º) componentDidUpdate(prevProps, prevState, snapshot):
+	- É um método BATANTE USADO.
+	- Este método será chamado chamado depois que a renderização é concluída nos ciclos de reenderização.
+	- Este método é garantid para ser chamado apenas uma vez em cada ciclo de renderização, então.
+	- É permitido causar efeitos colaterais, ou seja, posso fazer chamadas AJAX, mas antes, eu preciso comparar props anteriores com as novas props. E então deicidir se fasso a chamada AJAX ou não.
+	- Se eu não estou comparando, estou fazendo requisições idesejadas, o que NÃO é uma boa ideia.
+
+
+aula_24: Unmounting Phase Method (Método de Fase de Desmontagem)
+
+Este possui apenas um método:
+ 1) componentWillUnmount(): 
+	- Estemétodo é ivocado imediatamente antes de um componente ser desmontado e destruido.
+	- Neste método, eu posso realizar algumas tarefas de limpeza como: cancelamento e solicitações de rede, remover eventos manipuladores, cancelando quaisquer assinaturas, e também,
+		invalidando temporizadores de tempo limite definido ou intervalo definido.
+	- NÃO realizar chamadas setState method. (pq o componente nunca é lembrado depois de desmontado).
+	Resumindo: O componente desmontará, executará a limpeza necessária e não chamará o referido estado.
+
+
+aula_24: Error Handling Phase Methods (Método de Fase de Tratamento de Erros)
+
+Esta fase apresenta dois métodos:
+1º) static getDerivedStateFromError()
+2º) componentDidCatch()
+
+Ambos são chamados quando há um erro durante a renderização em um método de ciclo de vida, ou no contructor de qualquer componente filho.
