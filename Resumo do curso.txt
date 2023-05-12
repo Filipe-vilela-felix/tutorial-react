@@ -769,3 +769,18 @@ Esta fase apresenta dois métodos:
 2º) componentDidCatch()
 
 Ambos são chamados quando há um erro durante a renderização em um método de ciclo de vida, ou no contructor de qualquer componente filho.
+
+
+aula_25: Fragments
+
+No React, fragments permite que eu agrupe uma lista de elementos filhos sem adicinar nós extras ano DOM.
+Nota-se que ao criarmos um componente, todo o conteúdo presente no return() precisa ser envolto pela tag <div>.
+E para impedir que isso ocorra, usamos o fragmento React, substituindo a tag <div>: 
+	<React.Fragment></React.Fragment>
+A diferença é notada ao visualizar a parte de Element no devTools. Notar-se-há que nao será vista a tag.
+
+Uma vantagem dessa tag, é que ela pode aceitar o atributo key ao renderizar listas listas de itens.
+Obs: No lugar de <React.Fragment> posso usar uma tag de abertura e fechamento vazia: <> </>
+	A desvantagem de usar essa tag vazia, é que não poderei passar o atributo key.
+
+Resumindo: O React.Fragment ou <>, permite criar componentes filhos sem adicionar nós(div) no DOM
