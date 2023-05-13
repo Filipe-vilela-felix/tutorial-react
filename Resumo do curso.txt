@@ -784,3 +784,48 @@ Obs: No lugar de <React.Fragment> posso usar uma tag de abertura e fechamento va
 	A desvantagem de usar essa tag vazia, é que não poderei passar o atributo key.
 
 Resumindo: O React.Fragment ou <>, permite criar componentes filhos sem adicionar nós(div) no DOM
+
+
+aula_26: Pure Components (Componentes Puros)
+
+Existe uma segunda maneira de criar um componente de classe, e é extendendo a classe de componente puro de React. (Examinar o código presente no arquivo "PureComp.js")
+Diferença entre o componente puro e o componente regular / de classe, e quando usar uma ou outra:
+	Regular Component: 
+		- Um componente regular não implementa o método shouldComponentUpdate(). Ele sempre retorna true por padrão.
+	Pure Component: 
+		- O componente puro implementa o shouldComponentUpdate() com um shallow props (propriedades rasas) ou state comparison (comparação de estado).
+Mas antes: Para demonstar tal diferneça, preciso de um componente regular, um componente puro e um componente Pai, que é capaz de mudar seu estado. 
+			Após a criação de ambos os componentes filhos dentro do componente Pai e a inserção do console.log() em todos os componets criados,
+				nota-se que no console.log() o componente puro só é renderizado uma única vez, mesmo o setState sendo colocado para renderizar a cada dois segundos.
+
+Shallow Comparison (SC) - Comparação superficial (ditos em Pure Component):
+	1) Primitive Types (Tipos Primitivos):
+		Para dois tipos primitivos A e B como números, strings e booleanos, uma comparação superficial B retorna verdadeiro se A e B tem o mesmo valor e são do mesmo tipo.
+		Em outras palavras, A (SC) B returns true, sugnifica que ambas tem o mesmo tipo.
+		Ex: string "Vishwas" (SC) string "Vishwas" return true.
+	
+	2) Complex Type (Tipos Complexos), como objetos e matrizes:
+		Uma comparação superficial B retorna verdadeiro se A e B referenciam extatamente o mesmo objeto.
+		Ex: var a = [1,2,3];
+			var b = [1,2,3];
+			var c = a;
+
+			var ab_eq = (a === b); // false
+			var ac_eq = (a === c); // true
+		Em outras palavras: uma comparação superficial B retornará falso mesmo que os itens em ambas as áreas sejam os mesmos, essas duas matrizes nçao referenciam o mesmo objeto..
+							Uma comparação C por outro lado, retornará verdadeiro porque eles apontam para o mesmo objeto.
+
+Pure Component:
+	- Um componente puro implementa shouldComponentUpdate() com um shallow prop (prop superficial) e state comparison (comparação de state).
+		SC do prevState (estado anterior) com o currentState (estado atual).
+		SC do prevProps (propriedade anterior) com o currentProps (propriedade atual).
+		Ambas, somente quando a comparação superficial indica que há uma diferença que o componente irá renderizar novamente: Re-render comoponent.
+	- Evita renderizações desnecessárias e podem fornecer um aumento de desempenho em certos cenários.
+		ex: Digamos que eu esteja renderizando uma lista de 50 itens, ao não refaze-los quando não for necessário, eles terão um bom aumento de desempenho;
+
+RESUMO DA AULA:
+	Em react, podemos criar um component estendendo a classe de componente puro.
+	Um componente puro implementa o método de ciclo de vida shouldComponentUpdate(), realizando uma comparação superficial sobre os props e o state do componente.
+	Se não houver diferença, o componente não é renderizado novamente - aumento de desempenho.
+	É uma boa ideia garantir que todos os componentes Filhos também sejam puros para evitar comportamentos inesperados.
+	Se eu estiver usando componentes puros, nunca altere o state. Sempre retorne um novo objeto que reflita o novo estado.
