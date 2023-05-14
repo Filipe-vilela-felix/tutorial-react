@@ -829,3 +829,12 @@ RESUMO DA AULA:
 	Se não houver diferença, o componente não é renderizado novamente - aumento de desempenho.
 	É uma boa ideia garantir que todos os componentes Filhos também sejam puros para evitar comportamentos inesperados.
 	Se eu estiver usando componentes puros, nunca altere o state. Sempre retorne um novo objeto que reflita o novo estado.
+
+
+aula_27: Memo 
+
+Os componentes puros apenas retrocedem os componentes de classe quando há uma diferença na shallow comparison (comparação superficial) de props e state, 
+	e afirmam que isso resulta em uma melhoria de desempenho.
+Para que os componentes puros funcionem também com classes, utilizamos o React.memo.
+O que componentes puros são para componentes baseados em classe, react.memo é para os componentes funcionais.
+Tudo o que preciso fazer é exportar o React.memo() padrão e passar o nome do componente como argumento. Ex: export default React.memo(MemoComp)
