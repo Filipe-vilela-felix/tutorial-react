@@ -924,3 +924,20 @@ Veremos agora o passo a passo:
 	- Agora, o componente Pai pode acessar diretamente esse elemento de entrada usando this.inputRef.current.focus()
 
 Obs: Vale ressaltar que isso será raramente usado. Poré, n deixa de ser uma boa ideia estar ciente de conceitos diferentes de React.
+
+
+aula_31: Portals (Portais)
+
+Obs: Para melhor entendimento atualizado e explicado, analisar a documentação oficial: https://react.dev/reference/react-dom/createPortal
+
+Os portais de React fornecem uma maneira de renderizar filhos em um nó DOM que existe fora da hierarquia DOM do componente Pai.
+Para criar esse nó DOM fora da hierarquia, cria-se uma nova div com uma nova id, abaixo da div que contém o id root (localizada no index.html).
+Observaremos como foi feito no arquivo "PortalDemo.js":
+	- Para inserir nessa nova div, um componente por exemplo, importo: import { createPortal } from 'react-dom', chamando a existencia um portal a partir do react DOM.
+	- Ao lado do return, insiro o nome da importação, createPortal, o qual recebe dois parâmetros: o primeiro, o JSX a ser renderizado, e o segundo, o local onde será teletransportado.
+
+Mas por que precisamos dele?
+	Um dos casos de uso levantados, é ter que lidar com componentes CSS aparentes quando esse componennte filho é um modal, um pop-up ou uma dica de ferramenta.
+	Obs: Procurar tais exemplos em vídeos extras.
+
+
