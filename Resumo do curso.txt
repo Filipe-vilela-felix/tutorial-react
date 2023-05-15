@@ -838,3 +838,54 @@ Os componentes puros apenas retrocedem os componentes de classe quando há uma d
 Para que os componentes puros funcionem também com classes, utilizamos o React.memo.
 O que componentes puros são para componentes baseados em classe, react.memo é para os componentes funcionais.
 Tudo o que preciso fazer é exportar o React.memo() padrão e passar o nome do componente como argumento. Ex: export default React.memo(MemoComp)
+
+
+aula_28: Refs 
+
+Basicamente, vamos tornar possível acessar os nós DOM diretamente no React.
+Para fazer isso, usaremos o seguinte caso de uso:
+	Suponha que nós tenhamos um formulário de login e senha. Assim que a página for carregada, digamos que por padrão, queremos que o campo de entrada do nome do  usuário seja focado.
+Veremos com fazer isso com refs:
+PRIMEIRA abordagem:
+	1º) Criar uma ref:
+		Fazemos isso usando o método react.crateRef, obviamente dentro do constructor.
+		E nesta nova propriedade, atribuímos React.createRef().
+		Obs: É comum criarmos refs no constructor para que possam ser referenciados em todo o componente;
+	
+	2º) Anexar esta ref criada ao meu elemento de entrada no método render():
+		Para anexar uma referência, fazemos uso do atrubuto ref="", e incluiremos nele a ref criada.
+
+	3º) Chamar o método de foco neste elemento de entrada:
+		Mas antes, precisamos saber o que a propriedade this.inputRef mantém depois que uma referência é criada:
+			Para isso, vou adiciar um grancho do ciclo de vida do componente montado (componentDidMount()) e, dentro do componnte, registrarei no console o this.inputRef. 	
+			Observe que temos um objeto registrado no console, se eu expandi-lo, eu posso ver uma propriedade chamada current do tipo input.
+			E esta propriedade atual, ao expandi-la, aponta para o nó DOM real.		
+		Então, pra focar no elemento de entrada no componentDidMount(), nós simplesmente chamamos o método focus na propriedade atual, desta forma (de acordo com o exemplo apresentado no código):
+			this.inputRef.current.ficus
+		Ao fazer isso, observaremos que no carregamento da página, o elemento tem o foco. 
+
+Suponhamos um segundo caso de uso para usar refs:
+	Buscar o valor de entrada atravé de um botão.
+Segue os seguintes passos:
+	Primeiro, criamos um botão com um manipulador de eventos que alertará this.input.current.value
+	Basicamente, estamos acessando a propriedade value do nó DOM de entrada que está disponível com a propriedade current.
+
+SEGUNDA abordagem:
+Veremos agora refs de callback, sendo a segunda forma de definir um ref:
+	É uma abordagem mais antiga, porém, é importante caso me depare com ela em algum projeto ou exemplo.
+	Para este modo, focaremos no primerio caso de uso apresentado na aula.
+	Esta abordagem possui 4 estapas simples:
+		1ª) Criar a referência na primeira abordagem:
+			Criamos uma propriedade no constructor, assim como no exemplo anterior, porém com valor nulo.
+			Obs: cbRef, significa callback (apenas como forma de representação);
+		
+		2ª) Emobra criemos um método que atribuirá um elemento DOM à ref que acabamos de criar na etapa 1, agora, vou chamar esse método como setCbRef, 
+			e vai aceitar um element DOM como seu parâmetro e atribui-lo ao callback ref para que this.cbRef seja igual ao element.
+		
+		3ª) Anexar este ref ao elemento de entrada (input):
+			Para melhor entendimento desta aula, vou duplicar a entrada que já temos e alterar o atributo ref={} para this.setCbref. Sendo ele, o método que define nossa ref.
+
+		O elemento input é passado implicitamente como um parãmetro que é atribuido à propriedade callback.
+
+		4ª) No componentDidMount(), faço uma estrutura condicional onde em seu parâmetro, incluo o callback. Pois se nele, houver algum tipo de valor (motivo pelo qual inserimos null no constructor),
+			será incrementado no corpo da estrutura a função de foco: this.cbref.focus()
