@@ -910,3 +910,17 @@ Segundo, criaremos o componente pai, chamado de FocusInput.js.
 		3º) Adicionaremos um manipulador de eventos no botão. E dentro do manipalador de cliques, chame o método do componente filho usando a ref.
 
 Obs: Um componente de classe refs não pode ser anexado componentes funcionais.
+
+
+aula_30: Forwarding Refs (Encaminhamento de Refs)
+
+É uma técnica para passar automaticamente um ref através de um componente para um de seus fillhos.
+Veremos agora o passo a passo:
+	- O componente Pai cria uma referência e então a anexa à instância do componente filho.
+	- O componente filho vê essa referência e diz ao Pai: "Hei! eu não sou o cara que você está procurando. Você quer o elemento de entrada nativo, certo?
+		Deixe-me apresenta-lo diretamnente a você para que o componente Filho receba o ref do componente Pai e o anexe ao elemento de entrada nativo".
+		Tal frase referencia o arquivo "FRInput.js", onde vemos a função de seta existente a partir do React.ForwardRef, que referencia ali um prop automatico e um ref como atributos. 
+			Fazendo assim uma apresentação direta (dita no texto).
+	- Agora, o componente Pai pode acessar diretamente esse elemento de entrada usando this.inputRef.current.focus()
+
+Obs: Vale ressaltar que isso será raramente usado. Poré, n deixa de ser uma boa ideia estar ciente de conceitos diferentes de React.
