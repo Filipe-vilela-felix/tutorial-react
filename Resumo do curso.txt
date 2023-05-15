@@ -889,3 +889,24 @@ Veremos agora refs de callback, sendo a segunda forma de definir um ref:
 
 		4ª) No componentDidMount(), faço uma estrutura condicional onde em seu parâmetro, incluo o callback. Pois se nele, houver algum tipo de valor (motivo pelo qual inserimos null no constructor),
 			será incrementado no corpo da estrutura a função de foco: this.cbref.focus()
+
+
+aula_29: Refs with Class Components (Refs como Components de Classe)
+
+Além de ser possível adicionarmos referências como a um elemento HTML normal como o input, também podemos adicionar uma referência a um componente de classe.
+Vermos através de um exemplo:
+Primeiro, criaremos um componente filho, chamado de Input.js. Basicamente, esse componente será uma implementação do que foi aprendido na aula passada. 
+	Crio um input no render(), e um constructor, onde o this.inputRef receberá um React.createRef().
+	Vou anexar esse ref criado ao input usando o atributo ref={}
+	Nesta aula, não usaremos o componentDidMount(), ao invès disso, queremos criar um método que, por sua vez, focará no elemento de entrada. E este método será chamado no componente Pai.
+	E este método terá em seu corpo a função de focus no elemento.
+Segundo, criaremos o componente pai, chamado de FocusInput.js.
+	No JSX, chamo o componente filho a existencia. E com isso também vou criar um botão.
+	Agora, o que queremos fazer é...quando  clicarmos no botão, o elemento de entrada presente no componente filho deve receber o valor.
+	E conseguiremos isso usando refs neste componente.
+	Para reforçar, temos 3 etapas simples:
+		1ª) No componente Pai, que é o componente de entrada de foco, criaremos uma referência usando o método React.createRef().
+		2º) Anexamos a ref ao componente Pai.
+		3º) Adicionaremos um manipulador de eventos no botão. E dentro do manipalador de cliques, chame o método do componente filho usando a ref.
+
+Obs: Um componente de classe refs não pode ser anexado componentes funcionais.
