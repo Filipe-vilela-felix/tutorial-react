@@ -957,3 +957,18 @@ RESUMINDO:
 	- Em nosso exemplo, no método de ciclo de vida, definimos o estado de error como verdadeiro, o que faz com que a interface do usuário de fallback serja renderizada.
 	- O posicionamento do limite de erro também é importante, pois controla se todo o aplicativo deve ter a interface de usuário de fallback apenas para o componente que está causando o problema.
 	- Os limites basicamente fornecem uma maneira de lidar com erros no código do aplicativo.
+
+
+aula_33: Higher Order Component (Componente de Ordem Superior) - (part 1)
+
+Nesta aula, entenderemos por que é necessário algo como um componente de ordem/nível superior.
+Para tal entendimento, criaremos dois componentes: ClickCounter.js e HoverCounter.js.
+Tais componentes utilizam a mesma funcionalidade, que é de incrementendo do state. A única diferença é que um clica e o outro passa o mouse.
+Obs: Vale ressaltar que na criação do setState, usamos o prevState (aula_11). Explicação no vídeo: https://www.youtube.com/watch?v=lURUBUu7IwY.
+
+Ao analisar os códigos, percebemos que ambos apresentam a mesma funcionalidade de contador, mas foram duplicados.
+Portanto, se dez componenetes precisassem de uma funcionalidade de contador, não seria viável duplica-los. Teríamos que reutiliza-los.
+	O pensamento imediato para tal seria elevar esse estado para o componente pai e passar o manipulador como um prop.
+
+PORÉM, caso os componenetes do contador estajam espalhados na árvore do componente React, precisaremos de compartilhar funcionalidades comuns entre os componenentes sem repetir o código.
+E é aonde o conceito de componente de ordem superiror entra nas próximas duas aulas.

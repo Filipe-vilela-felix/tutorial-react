@@ -1,20 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
-import Hero from './components/Hero';
-import ErrorBoudary from './components/ErrorBoundary';
+import ClickCounter from './components/ClickCounter';
+import HoverCounter from './components/HoverCounter';
 
 function App() {
   return (
     <div className="App">
-      <ErrorBoudary>
-        <Hero heroName="Batman" />
-      </ErrorBoudary>
-      <ErrorBoudary>
-        <Hero heroName="Superman" />
-      </ErrorBoudary>
-      <ErrorBoudary>
-        <Hero heroName="Joker" />
-      </ErrorBoudary>
+      <ClickCounter />
+      <HoverCounter />
     </div>
   );
 }
