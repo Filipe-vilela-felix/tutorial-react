@@ -972,3 +972,35 @@ Portanto, se dez componenetes precisassem de uma funcionalidade de contador, nã
 
 PORÉM, caso os componenetes do contador estajam espalhados na árvore do componente React, precisaremos de compartilhar funcionalidades comuns entre os componenentes sem repetir o código.
 E é aonde o conceito de componente de ordem superiror entra nas próximas duas aulas.
+
+
+aula_34: Higher Order Component (Componente de Ordem Superior) - (part 2)
+
+Obs: Esta funcionalidade não é comumente usada na nova atualização do React
+
+Nesta aula veremos o que é componente de ordem/nível superior - HOC.
+É uma função que aceita o componente original e retorna um novo componente em código simples.
+Terá um aspecto semelhante a isto:
+	const NewComponent = higherOrderComponent( originalComponent )
+	De uma forma menos tecnica: const IronMan = withSuit (TonyStark)
+Levando para a prática, a representação fica mais abrangente:
+	const newComponent = OriginalComponent => {
+		class newComponent extends React.Component {
+			render() {
+				return <OriginalComponent />
+			}
+			return newComponent
+		}
+	}
+
+	export default newComponent
+
+Porém, repare que no arquivo withCounter.js, de forma mais tecnica e visivel em muitos documentos e projetos, é assim que ele é mostrado. 
+Obs: Repare nos componentes em que esse componente superiror é compartilhado: ClickCounter.js e HoverCounter.js
+		Veja que em seus respectivos export, ambos apresentam o nome do component superior e entre seu parenteses o nome dos seus respectivos export.
+
+Pare entender melhor como funciona, acesse: https://pt-br.legacy.reactjs.org/docs/higher-order-components.html
+
+
+
+
