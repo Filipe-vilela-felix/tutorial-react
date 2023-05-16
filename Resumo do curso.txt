@@ -1002,5 +1002,18 @@ Obs: Repare nos componentes em que esse componente superiror é compartilhado: C
 Pare entender melhor como funciona, acesse: https://pt-br.legacy.reactjs.org/docs/higher-order-components.html
 
 
+aula_35: Higher Order Components (Componentes de Ordem Superior) - (part 3)
 
+Obs: Higher Order Components - HOC
 
+Estudaremos dois tópicos importantes:
+	1º) Passando props no componente do aplicativo:
+		Observe que passar props no componente do app.js (linha 9) não funciona quando o componente em questão usa funcionalidades de um componente superior.
+		Para que a passagem de props funcione, se faz necessária incluir um -> {... this.props.(nomeDaProps)} (linha 22 do arquivo withCounter.js).
+		Isso "diz" que é para o componente superior renderizar todos os props a mais, além dos já renderizados por ele.
+	
+	2º) Passando parâmetros para a função HOC:
+		Observando os códigos, digamos que ao invés de incrementar o valor de contagem e um, eu quero incrementa-lo em números diferentes para ambos os componentes do contador.
+		Podemos fazer isso passando um parâmetro para a função de seta presente no componente superior, além do WrapperComponente (linha 4). Crio então um parâmetro chamado incrementNumber.
+		Feito isso, alteramos a contagem em + 1, presente no return, e passamos a incrementar o + incrementNumber.
+		E por fim, adicionaremos dentro do withCounter() presente no export dos respectivos ClickCounter.js e HoverCounter.js, o quantitativo de incrementos desejado.
