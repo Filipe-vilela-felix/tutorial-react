@@ -1017,3 +1017,12 @@ Estudaremos dois tópicos importantes:
 		Podemos fazer isso passando um parâmetro para a função de seta presente no componente superior, além do WrapperComponente (linha 4). Crio então um parâmetro chamado incrementNumber.
 		Feito isso, alteramos a contagem em + 1, presente no return, e passamos a incrementar o + incrementNumber.
 		E por fim, adicionaremos dentro do withCounter() presente no export dos respectivos ClickCounter.js e HoverCounter.js, o quantitativo de incrementos desejado.
+
+
+aula_36: Render Props - (part 1)
+
+Este é outro padrão para compartilhar código entre componentes de React, que é a renderização adequada.
+
+Nesta aula, analizaremos por que há necessidade de renderizar props.
+Veja que ao os componentes ClickCounterTwo.js e HoverFocusTwo.js apresnetamas mesmas funcionalidades. A única diferença é que um recebe o onlClik() e o outro onMouseOver() no JSX.
+Para não ficar repetitivo, usamos o padrão Render Props, que será explicado nas próximas partes.

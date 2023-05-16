@@ -1,13 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
-import ClickCounter from './components/ClickCounter';
-import HoverCounter from './components/HoverCounter';
+import ClickCounterTwo from './components/ClickCounterTwo';
+import HoverCounterTwo from './components/HoverFocusTwo';
 
 function App() {
   return (
     <div className="App">
-      <ClickCounter name="Vishwas" />
-      <HoverCounter />
+      <ClickCounterTwo />
+      <HoverCounterTwo />
     </div>
   );
 }
