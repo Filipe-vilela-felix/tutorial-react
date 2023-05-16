@@ -941,3 +941,19 @@ Mas por que precisamos dele?
 	Obs: Procurar tais exemplos em vídeos extras.
 
 
+aula_32: Error Boundery (Limite de Erro)
+
+O foco desta aula será sobre criar limites de erros através dos hooks de cliclo de vida que foram mencionados brevemente sobre a fase de tratamento de erros: static getDerivedStateFromError(error) e componentDidCatch(erro, info);
+Nesta aula aprenderemos a criar uma interface que mostra com maior clareza os erros presenstes em nosso código. É aonde os limites de error ganham destaque.
+Em outras palavras é que, se um componente específico lançar um erro, apenas esse componente deve retornar uma interface do usuário, e os componentes restantes não devem ser afetados. 
+Exemplo usado nos códicos da aula:
+	
+Importante saber que nossos limites pegam erros durante a renderização nos métodos de ciclo de vida e nos constructors de toda a árvode abaixo deles, no entando, eles não pegam erros dentro dos manipuladores de eventos.
+	Se eu tiver um manipulador onClick e quiser pegar um erro, eu só precisarei usar as instruções regulares do componentDidCatch() nos limites de erro. Obs: essa última frase não detemm de toda certeza, pois a tradução não ajudou;
+
+RESUMINDO:
+	- Nossos limites são componentes de React que detectam erros JavaScript em sua árvore de componentes filhos, registram esses erros e exibem uma inteface do usuário de fallback.
+	- Um componente de classe se torna um limite de erro definindo um ou ambos getDerivedStateFromError() e componentDidCatch() métodos de ciclo de vida.
+	- Em nosso exemplo, no método de ciclo de vida, definimos o estado de error como verdadeiro, o que faz com que a interface do usuário de fallback serja renderizada.
+	- O posicionamento do limite de erro também é importante, pois controla se todo o aplicativo deve ter a interface de usuário de fallback apenas para o componente que está causando o problema.
+	- Os limites basicamente fornecem uma maneira de lidar com erros no código do aplicativo.
