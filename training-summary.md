@@ -1026,3 +1026,20 @@ Este é outro padrão para compartilhar código entre componentes de React, que 
 Nesta aula, analizaremos por que há necessidade de renderizar props.
 Veja que ao os componentes ClickCounterTwo.js e HoverFocusTwo.js apresnetamas mesmas funcionalidades. A única diferença é que um recebe o onlClik() e o outro onMouseOver() no JSX.
 Para não ficar repetitivo, usamos o padrão Render Props, que será explicado nas próximas partes.
+
+
+aula_37: Render Props - (part 2)
+
+O termo "render prop" refere-se a uma técnica para compartilhar código entre componentes de React usando um prop, cujo valor é uma função.
+Revisando o padrão usado na aula:
+	- No component App.js, nos deparamos com o componente CounterRender.js.
+	- Em CounterRender.js, temos um estadado de contagem e um método de contagem de incremento.
+		No entando, o mesmo não renderiza nada por conta própria, ele simplesmente renderiza o que for passado como prop. E enquanto fazendo isso, ele passa o estado de contagem e o método de contagem de incremento.
+	- O que é um prop de renderização?
+		É o contador ClickCounterTwo.js
+	- O estado e o método de contagem de incremento do componente CounterRender.js, são passados como porps para ClickCounterTwo.js.
+	- Dentro do ClickCounterTwo.js vemos que se faz uso do estado e o método de contagem de incremento em props para renderizar a interface do usuário.
+	- Quando eu clico no botão e chamo o método de contagem de incremento ou tento exibir o valor de contagem, é basicamente o que o componente ClickCounter.js.
+	Obs: Este mesmo processo acontece com o componente HoverFocus.js
+
+	
