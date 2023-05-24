@@ -1042,4 +1042,20 @@ Revisando o padrão usado na aula:
 	- Quando eu clico no botão e chamo o método de contagem de incremento ou tento exibir o valor de contagem, é basicamente o que o componente ClickCounter.js.
 	Obs: Este mesmo processo acontece com o componente HoverFocus.js
 
-	
+
+aula_38: Context	
+
+Nesta aula, é visto o motivo da necessidade de Context API e nas próximas duas aulas, será visto como fazer uso, e também entender alguns dos detalhes quando se trata de React Context.
+No vídeo referente a aula, o professor mostra uma imagem, onde podemos ver representações de componentes aninhados entre si.
+	EX: Os componentes A, B e C, estão aninhados ao componente App.js;
+		O componente D está aninhado ao componente B;
+		O componente E está aninhado ao componennte C;
+		O componente F está aninhado ao componenete E;
+	De acordo com o exemplo, temos três niveis no total, apresentados no vídeo. Os requisitos em nossa aplicação é que os componentes A, D e F devem exibir o nome de usuário logado, cujas informações são mantidas como uma propriedade no componente App.js.
+		Para tal, o username deve ser passado como props no componente A;
+		Em seguida, devemos passar o username como prop para o componentente B, e depois para o D;
+		E por ultimo, fazer o mesmo para o componente C, que passará para o E e por ultimo, para o F;
+Note que fazendo desta maneiro fica muito trabalhoso, principalmente se houver vários componentes a mais.
+O interssante seria se pudéssemos enviar dados diretamente para o componente necessário sem ter que detalhar manualmente os props em todos os níveis da árvore de componentes.
+E para isso...
+	O context fornece uma maneira de passar dados pela árvore de componentes sem ter que passar props manualmente em todos os níveis.
