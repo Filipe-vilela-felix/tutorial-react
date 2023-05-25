@@ -1059,3 +1059,37 @@ Note que fazendo desta maneiro fica muito trabalhoso, principalmente se houver v
 O interssante seria se pudéssemos enviar dados diretamente para o componente necessário sem ter que detalhar manualmente os props em todos os níveis da árvore de componentes.
 E para isso...
 	O context fornece uma maneira de passar dados pela árvore de componentes sem ter que passar props manualmente em todos os níveis.
+
+
+aula_ 39: Context - (part 2)
+
+De acordo com a contextualização vista na aula passada, serão apresentados como exemplo, apenas os componentes C, E e F.
+O objetivo é passar o usename do componente AB e ler esse valor no componente F usando o context.
+O objetivo é passar o username presente no App.js para o component F usando o context.
+	Há três etapas a serem implementadas ao usar o context:
+		1ª) Criar o context (Create a context):
+				- Crio um arquivo chamado userContext. Dentro do arquivo, usaremos o método create context do React para criar um objeto chamado UserContext.
+				- Todo objeto de context criado usando o método React.createContext(), vem com um provedor e um componente de React do consumidor. Precisamos desses componentes para as etapas dois e três. O que dignifica que temos que exporta-los.
+				- Sabendo disso, criamos um provedor e um consumidor disponiveis para o objeto já criado criado. (linhas 5 e 6 em UserContext.js)
+				- Por fim, exporto os dois objetos que detém do objeto com provedor e consumidor. Criando assim, um contexto de usuário para a etapa 2. (linha 8 em UserContext.js)
+				Obs: Lembre-se de envolver o ComponentC com o provedor do usuário, UserProvider. E também de de incluir a importação na parte superior;
+		2ª) Fornecer um valor de contexto (Provide a context value):
+				- O componente do provedor é responsável por fornecer um valor para todos os componentes descendentes.
+				E como queremos fornecer um username, precisamos usar o atributo value no UserProvider. (linha 10 App.js)
+		3ª) Consumir um valor de contexto (Consume the text value) nos componentes necessários:
+				- Na demonstração, precisamos consumir o valor do ComponentF para consumir um valor de contexto. Precisamos usar o componente consumidor.
+					Portanto, na declaração de retorno do componente F, incluimos UserConsumer do usuário e o importamos. E nas tags de abertura e fechamneto do o componete consumidor, precisamos especificar uma função de seta (dentro de chaves).
+					A função obtém o valor de contexto do usuário, que no caso, é Vishwas...como parâmetro, que pode ser usado dentro do corpo da função para retornar um elemento de React.
+						Em nosso exemplo, o parâmetro é username, e retornará no corpo da função...o username seguido de um Hello.
+				- Por fim, ao examinar o navegador, note que o nome Vihwas se encontra onde deveria estar.
+
+Resumindo as três etapas:
+	1ª) 
+		- Crio o context do usuário, usando o método React.createContext()
+		- Certificar de exportar os componentes provedor e consumidor
+	2ª) 
+		- Incluir o componente provedor e fornecer um valor usando o atributo value.
+		- Esse valor pode ser consumido em qualquer um dos componentes descendentes.
+	3ª) 
+		- No componente onde desejo informar o resultado do value, no caso, o nome do usuário, é necessário usar o componente consumidor e passar uma função como seu filho.
+		- A função recebe o valor de contexto como seu parâmetro, que pode então ser usado para retornar o JSX.

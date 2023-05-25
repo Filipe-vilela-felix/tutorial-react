@@ -1,25 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
-import ClickCounterTwo from './components/ClickCounterTwo';
-import HoverCounterTwo from './components/HoverFocusTwo';
-import User from './components/User'
-import CounterRender from './components/CounterRender';
+import ComponentC from './components/ComponentC';
+import { UserProvider } from './components/userContext';
 
 function App() {
   return (
     <div className="App">
-      <CounterRender render={(count, incrementCount) => (
-        <ClickCounterTwo count={count} incrementCount={incrementCount} />
-      )} 
-      />
-      <CounterRender render={(count, incrementCount) => (
-        <HoverCounterTwo count={count} incrementCount={incrementCount} />
-      )} />  
-      {/* 
-      <ClickCounterTwo />
-      <HoverCounterTwo />
-      */}
-      <User name={(isLoggedIn) => (isLoggedIn ? "Vishwas" : "Gest")} />     {/*Demonstração mais simples de como funciona umm render porps*/}
+      <UserProvider value="Vishwas">
+        <ComponentC />
+      </UserProvider>
     </div>
   );
 }
