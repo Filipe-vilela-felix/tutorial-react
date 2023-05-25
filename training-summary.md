@@ -1093,3 +1093,19 @@ Resumindo as três etapas:
 	3ª) 
 		- No componente onde desejo informar o resultado do value, no caso, o nome do usuário, é necessário usar o componente consumidor e passar uma função como seu filho.
 		- A função recebe o valor de contexto como seu parâmetro, que pode então ser usado para retornar o JSX.
+
+
+aula_40: Context - (part 3):
+
+Além dos pontos discutidos na aula anterior, existem mais dois pontos opcionais a serem abordados.
+	1º) Atribuindo um valor padrão diretamente no React.createContext()
+			- No componente userContext.js, posso inserir um valor padrão diretameente no método createContext, que ficará alocado como argumento do método (linha 3);
+			- Fazendo dessa forma, note que não se faz necessário o uso do provedor como antes (pois o método por si só se tornou o provedor) (linha 9 e 11 no App.js). Precisando somente do UserConsumer (linha 7 e 13 no ComponentF.js);
+			Obs: Esse valor padrão usado como argumento no método createContext() só será usado quando um componente não tem um provedor acima dele na árvore.
+	
+	2º) Tipo de contexto (Context Type):
+			- Este tipo, conhecido como contextType (linha 6 ou 18 no ComponentE.js) subtitui o UserConsumer (linha 7 e 13 no ComponentF.js).
+			Mas para isso, é necessário exportar o UserContext diretamente. (linha 9 no userComponent.js).
+		Obs: Infelizmente, existem duas limitação ao fazer desta forma:
+				1ª) Ele só funciona com componentes de classe
+				2ª) Eu só posso me inscrever em um único contexto usando o contextType. E muitas vezes em meu aplicativo, preciso ler mais de um contexto em qual cenário o UserConsumer será o único possível  
