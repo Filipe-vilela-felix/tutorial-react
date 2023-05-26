@@ -1108,4 +1108,18 @@ Além dos pontos discutidos na aula anterior, existem mais dois pontos opcionais
 			Mas para isso, é necessário exportar o UserContext diretamente. (linha 9 no userComponent.js).
 		Obs: Infelizmente, existem duas limitação ao fazer desta forma:
 				1ª) Ele só funciona com componentes de classe
-				2ª) Eu só posso me inscrever em um único contexto usando o contextType. E muitas vezes em meu aplicativo, preciso ler mais de um contexto em qual cenário o UserConsumer será o único possível  
+				2ª) Eu só posso me inscrever em um único contexto usando o contextType. E muitas vezes em meu aplicativo, preciso ler mais de um contexto em qual cenário o UserConsumer será o único possível 
+
+
+aula_40: React and HTTP
+
+Nesta aula, veremos como as aolicitações HTTP geralmente são tratadas em aplicativo React.
+
+Quando você está criando aplicativos da web (React App), na maioria das vezes você precisa entrar em contato com o servidor para buscar ou enviar alguns dados com base na interação com o usuário.
+O React não se preocupa de forma alguma com HTTP.
+Por conta disso, como fazemos solicitações request(AJAX) em react ou como fazemos chamadas de API em react?
+	Primeiramente, o React não tem uma maneira específica de buscar ou enviar dados para o servidor.
+	Lembre-se que os componentes React simplesmente leem props e state e renderizam a interface do usuário. Portanto, para alguns dados do servidor, você precisa obter os dados em seus componentes props ou state.
+	- Então para fazer solicitações request, é necessário usar uma biblioteca HTTP, como por exemplo, a Axios ou API de busca. Obs: O foco da aula não é nas bibliotecas, mas como são utilizadas.
+	1º) Adicionar o pacote Axios ao nosso aplicativo:
+		No terminal do vs code, digite: npm install axios 
