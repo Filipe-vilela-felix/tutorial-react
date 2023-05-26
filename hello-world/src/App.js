@@ -1,14 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
-import ComponentC from './components/ComponentC';
-import { UserProvider } from './components/userContext';
+import PostList from './components/PostList';
 
 function App() {
   return (
     <div className="App">
-      {/*<UserProvider value="Vishwas">*/}
-        <ComponentC />
-      {/*</UserProvider>*/}
+      <PostList />
     </div>
   );
 }

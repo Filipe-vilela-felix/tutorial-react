@@ -1123,3 +1123,43 @@ Por conta disso, como fazemos solicitações request(AJAX) em react ou como faze
 	- Então para fazer solicitações request, é necessário usar uma biblioteca HTTP, como por exemplo, a Axios ou API de busca. Obs: O foco da aula não é nas bibliotecas, mas como são utilizadas.
 	1º) Adicionar o pacote Axios ao nosso aplicativo:
 		No terminal do vs code, digite: npm install axios 
+
+
+aula_41: HTTPS GET Request
+
+Nesta aula, veremos como fazer um request usando o Axios e renderizar os dados fixos em um componente React.
+
+Para buscar os dados precisamos ter um API endpoint. Obs: Endpoint é um dispositivo capaz de trocar informações dentro de uma rede privada ou corporatica, como por exemplo, um celular, computador, uma API etc. Em uma API, um endpoint é uma URL que representa uma entidade ou recurso específico;
+E para isso, estarei fazendo uso do placeholder JSON como API REST on-line falsa para teste e prototipagem, localizado no link: https://jsonplaceholder.typicode.com/
+
+Obs: O objetivo desta aula é concentrar em nosso aplicativo React e não em uma criação de uma API;
+
+Na seção "Routes" localizado no link disponível, você pode ver as possíveis solicitações HTTPS possíveis. Nesta aula, a solicitaçõa realizada foi a primieria, /post.
+
+Agora, segue as etapas de desenvolvimento:
+	1ª) 
+		- Para a primeira etapa de busca de dados, importamos a biblioteca Axios
+	2ª)
+		- Precisamos criar uma propriedade de estado (state), que será uma matriz e  que armazenará a lista de postágens. (linha 7 e 8)
+	3ª) 
+		- Vamos usar o Axios para fazer um request para a API JSON.
+		- Para fazer tal solicitação usamos o método de cilco de vida componentDidMount()
+			Este método será executado quando o componenete for montado pela primeira vez e será executado apenas uma vez durante a vida útil do componente.
+		- Para fazer a solicitação dentro do componentDidMount(), invocamos o método get na biblioteca Axios. (linha 13)
+			Este método aceita o Endpoint da API como seu argumneto. 
+		- Axios é uma biblioteca baseada em  promessas, para que possamos adiciona-los e capturar os blocos .then() e .catch(), que por sua vez, aceitam uma função de seta como argumento.
+			- No .then(), tenho acesso acesso à response como argumento, me permitindo seu registro através de um console.log. (linha 14 e 15)
+			- No .cath(), tenho acesso ao bloqueio do erro através do console caso algo dê errado. (linha 18 ao 20)
+		- Após isso, ao abir o dev tools do navegador, note que aparecerá um objeto registrado no console, se referindo ao .then() criado;
+			Ao expandi-lo, poderei ver a lista de 100 postagens que foram reccuperadas.
+	4ª) 
+		- Tudo o que nos resta agora é atribuir essa matriz de dados à probabilidade de state (linha 16) e, em seguida, renderiza-la no JSX. (linha 28 a 32)
+			Adicionarei no JSX com a seguinte condição:
+				Se em meu array houver pelo meno um post, então usaremos o método .map() e exibir cada título juntamente com seu id. 
+					Caso contrário, nada será renderizado.
+
+Como exibir uma mesagem de erro quando a API falhar?
+	- Adicionarei outra propriedade de estado chamada error, que inicializará uma string vazia. (linha 9)
+	- No bloco .catch(), vou definir como a string error ao recuperar os dados, através de um setState().
+	- No JSX, adiciono:
+		Se houver uma mensagem de erro, renderize errorMsg. Caso contrário, nada será renderizado. 
