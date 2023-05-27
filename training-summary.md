@@ -1163,3 +1163,35 @@ Como exibir uma mesagem de erro quando a API falhar?
 	- No bloco .catch(), vou definir como a string error ao recuperar os dados, através de um setState().
 	- No JSX, adiciono:
 		Se houver uma mensagem de erro, renderize errorMsg. Caso contrário, nada será renderizado. 
+
+
+aula_42: HTTPS Post Request
+
+Nesta aula, foi visto como postar dados em uma API do nosso aplicativo React.
+
+Agora, se voccê der uma olhada nas propriedades do objeto (tal objeto se encontra no link https://jsonplaceholder.typicode.com/posts) para uma postagem individual, temos o título e o corpo do usuário. Obs: O próprio id é incrementado automaticamente e não precisa ser enviado como parte do request.
+
+O que vamos fazer é criar três campos de entrada, um para o título, um para o ID do usuário e outro para o corpo. Armazenaremos os dados no objeto de estado e faremos uma solicitação de postagem ao clicar o botão enviar.
+
+Segue o passo a passo:
+	- Após a criação dos três inputs, vamos criar uma propriedade de estado para esses três campos e vinculá-los de volta aos elementos de entrada. (linha 9 a 10)
+	- Em seguida, vamos desestruturá-los no método render (linha 32) e adicionar seus valores ao atributo value dos elementos de input.
+	- A seguir, adicionamos o manipulador onChange para rastrear a alteração nos valores input e mantê-los sincronizados com o objeto de estado. (linha 41, 47 e 53)
+		A função que representa o onChange, terá um event (e) como argumento. E dentro do corpo da função, chamaremos o setState onde a chave será o name de destino, cujo seu valor será o value de destino. Agora fazendo uso do atributo name, não precisamos de manipuladores separados para cada input. (linha 14 a 16)
+	- Por fim, a última coisa que precisamos é de um button submit. E em seguida, na tag form, criamos um evento onSubmit e atribuimos um manipualador para o mesmo.
+		A função submitHandler() terá como parâmetro um event (e), e dentro do corpo, por enquanto, teremos o e.preventDefault() para evitar a atualização da página, e simplesmente registrar no console o objeto de estado. (linha 19 e 20)
+	Obs: Ao fazer tudo isto, e inserir quaisquer informações nos inputs, note que no console do navegador aparecerá o objeto que queremos postar, juntamente com as propriedades de estado e seus respectivos valores; 
+		
+Fazendo a postagem:
+	- No console.log() temos o objeto que queremos postar, e faremos isso com o Axios.
+		Isso é muito parecido com a solicitação get, com uma pequena alteração
+	- Importamos o Axios no componente.
+	- Em seguida, no submitHandler(), fazemos o post request, onde em seu argumento, é o endpoint (url) da API. (linha 22)
+	- O método Post recebe um segundo argumento, que são os dados que devem ser enviados. E no caso descrito nesta aula, é o objeto de estado. (linha 22)
+	- Assim que a solicitação for concluida nós obteremos uma resposta ou um erro.
+		- No .then(), tenho acesso à response como argumento, me permitindo seu registro através de um console.log.
+		- No .catch(), tenho acesso ao bloqueio do erro através do console caso algo dê errado.
+	- Após a conclusão e após preencher os inputs no vagedor e acessar o console do mesmo, dentro da ferramenta devtools, poderemos ver a resposta no console. Se expandirmos objeto data de dados, obteremos de volta o mesmo objeto que foi postado. Mas desta vez, com a propriedade de ID exclusiva.
+	- Esse objeto de dados pode ser usado para quaisquer alterações necessárias na interface do usuário.
+		Por exemplo, você pode adicionar esse objeto ao final da lista de postagens que pode ser exibido no navegador.
+		- Fazendo uma solicitação de postagem em nosso aplicativo de React com Axios.
