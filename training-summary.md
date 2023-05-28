@@ -1240,3 +1240,19 @@ Resumindo os conceitos vistos:
 		1ª) Por não terem que usar classes, Hooks evita a confusão com a palavra chave 'this';
 		2ª) Nos permite reutilizar lógica de estate sem alterar a hierarquia do componente, tornando o código mais simples deseguir;
 		3ª) nos permite organizar a lógica de um componente em unidades isoladas reutilizáveis. Evitando bugs e inconsistencias triviais;
+
+
+aula_45: React Hooks - useState Hook
+
+Criamos um componente de classe e um componente funcional, possuindo as mesmas funcionalidades.
+
+Nesta aula, foi visto através de um exemplo simples, como usar um hook de state em um componente Funcional em HookCounter.js.
+
+Como Hooks são apenas funções, nós a chamamos. E este hook ou function aceita um argumento, que é o valor inicial da propriedade de estado e retorna o valor atual da propriedade de estado e um método que é capaz de atualizar essa propriedade, ambas dentro de colchetes. (linha 4 em HookCounter.js)
+
+Existem duas regras importantes a serem seguidas:
+	
+	1ª) "Only Call Hooks at the Top Level" (Chame apenas hooks no nível superior) e não chame ganchos dentro de condições de loops ou funções aninhadas.
+
+	2ª) "Only Call Hooks React Function" (Somente chamar Hooks em função). Certifique-se de chamar de chama-los dentro de componentes funcionais de React e não apenas em qualquer função JavaScript.
+
