@@ -1195,3 +1195,48 @@ Fazendo a postagem:
 	- Esse objeto de dados pode ser usado para quaisquer alterações necessárias na interface do usuário.
 		Por exemplo, você pode adicionar esse objeto ao final da lista de postagens que pode ser exibido no navegador.
 		- Fazendo uma solicitação de postagem em nosso aplicativo de React com Axios.
+
+
+aula_44: React Hooks - Introduction
+
+Hooks são uma nova feature (adição) de recursos que permite que voçê use os recursos do React sem ter que escrever uma classe.
+	Ex: Um estado de componente de React;
+	
+Anteriormente só poderíamos usar o estate apenas dentro dos componentes de classe. Agora com os hooks (ganchos), é possível usar o estado e tambem outros recursos de react sem escrever uma classe.
+Obs: Os Hooks não trabalham dentro das classes .
+
+Quais os conjuntos de motivos da criação de Hooks?
+	1º) 
+		1.1) Entender como funciona a palavra-chave 'this' em JavaSctipt. Pois, a maioria das linguagens não utiliza tal nomenclatura. O que dificulta o entendimento.
+		1.2) Lembrar de sempre vincular manipuladores de evento aos componnetes de classe.
+		1.3) As classe não minificam muito bem e tornam o recarregamento mais "quente" e muito pouco confiável.
+	
+	2º)
+		2.1) Não há uma maneira específica de reutilizar a lógica do componente sateful entre os componentes. 
+				Os HOC e render props patterns resolvem esse problema, mas teria que reestruturar seus componentes, que resulta em um código de apaência desajeitada. Você acaba agrupando seus componentes com outros componentes para compartilhar a fucionalidade. Isso só torna o código mais difícil.
+		2.2) Há uma necessidade de compartilhar a lógica de estado de uma maneira melhor, permitindo-nos reutilizar a lógica sem alterar a hierarquia do seu componente.
+
+	3º) 
+		3.1) Componentes com cenários complexos se tornam difíceis de criar, como busca de dados e assinatura de eventos.
+				
+		3.2) Percebe-se que o código relacionado não está organizado em um local, mas espalhado em diferentes métodos de ciclo de vida.
+				Ex: Busa de dados - Em componentDidMount() e componentUpdate().
+				Ex: Event listeners ("ouvintes de eventos") - Em componentDIdMount() e componentWillUnMount().
+			No código não relacionado, por outro lado, a busca de dados e o event linstners acabam no mesmo bloco de desenvolvimento, ambos acanam no componentDidMount
+		
+		3.3) Devido à lógica de state - Não é possível dividir esses componentes em componentes menores, seria muito melhor se todo o código relacionado estivesse junto.
+ 
+Os Hooks resolvem os motivos descritos acima, ao invés de forçar uma divisão com base nos métodos de ciclo de vida, os hooks permite dividir um componente em funções menores com base em quais partes estão relacionadas. 
+
+Obs: Os Hooks são opcionais. Não contém nenhuma alteração significativa .
+
+Como dito antes, não pode usar Hooks dentro de um componente de classe, mas meu aplicativo pode misturar classe e componentes funcionais com Hooks.
+
+Os Hooks fornecem uma API mais direta para os conceitos de React já conhecidos.
+
+Resumindo os conceitos vistos:
+	- Hooks permitem que você use recursos de React sem ter que esrever uma classe.
+	- Há três razões importantes para a introdução de hooks:
+		1ª) Por não terem que usar classes, Hooks evita a confusão com a palavra chave 'this';
+		2ª) Nos permite reutilizar lógica de estate sem alterar a hierarquia do componente, tornando o código mais simples deseguir;
+		3ª) nos permite organizar a lógica de um componente em unidades isoladas reutilizáveis. Evitando bugs e inconsistencias triviais;
