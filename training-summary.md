@@ -1256,3 +1256,16 @@ Existem duas regras importantes a serem seguidas:
 
 	2ª) "Only Call Hooks React Function" (Somente chamar Hooks em função). Certifique-se de chamar de chama-los dentro de componentes funcionais de React e não apenas em qualquer função JavaScript.
 
+
+aula_46: useState with previous state
+
+Nesta aula, foi visto como definir o state com base no prevState. Obs: Esta opçao é a mais segura e recomendada;
+Implementaremos um contador que terá botões para incrementar, decrementar e redefinir o valor de contagem. (linha 26 a 28)
+
+Incluimos depois, um botão que fosse capaz de incrementear o contador em cinco. E para isso, utilizamos a estrutura de repetição "for".
+Porém, o setState presente na estrutura não funcionava porque o mesmo está lendo um valor obsoleto da variável de estado de contagem. (linha 8 a 12)
+
+Basicamente, em vez de passar um valor da nova variável de estado, devemos passar uma função que tem acesso ao valor de estado antigo.
+Então setCount vai aceitar uma função que tem acesso à contagem antiga (prevState) como argumento, e em seu corpo, o prevState será incrementado + 5. (linha 15 a 19)
+
+Por fim, tal função também deve ser realizada nas linhas de retorno. (linha 30 a 35)
