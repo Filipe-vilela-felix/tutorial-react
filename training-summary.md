@@ -1269,3 +1269,22 @@ Basicamente, em vez de passar um valor da nova variável de estado, devemos pass
 Então setCount vai aceitar uma função que tem acesso à contagem antiga (prevState) como argumento, e em seu corpo, o prevState será incrementado + 5. (linha 15 a 19)
 
 Por fim, tal função também deve ser realizada nas linhas de retorno. (linha 30 a 35)
+
+
+aula_47: useState with object
+
+Discutiremos sobre o uso de um objeto como uma variável de estado com o state Hook.
+
+Uma variável de estado pode ser uma string, booleano, um objeto ou até mesmo uma matriz. E no exemplo desta aula, temos uma variável de estado chamada name, que é um objeto e um setName para atualizar a variável de estado correspondente. (linha 4)
+
+Em seguida, foi-se definido dois inputs no método render(), um para o firstName e um para o lastName. Em ambos input, atribuimos um value, que por sua vez, possui o primeiro ou o segundo nome a ser atribuido. (linhas 10 e 15) 
+
+E em seguida, um onChange={}, pois sempre que o usuário começar a digitar, queremos definir a propriedade do primeiro ou segundo nome igual ao value atribuido (usando um event como propriedade). (linhas 11 e 16)
+Em outras palavras, sempre que o valor de input muda, atualizamos a propriedade de estado do primeiro ou segundo nome como um novo value.
+
+Porém fazer somente isto não é o suficiente. Pois quando digito em um dos inputs e depois vou digitar no outro, o primeiro input que digitei acaba ficando vazio. Isso acontece porque meu state não mescla e atualiza automaticamente o objeto. E esta é uma diferença fundamental para definir um state nos componentes funcionais. E por conta disso, teremos que fazer tal ajuste manualmente, chamado de operador de spreed.
+
+E para realizar ese ajuste, no onChange, ao lado do primeiro ou segundo nome, podemos usar o operador de propagação para lidar com a mesclagem manual em ambos os inputs. Que é reticências e em seguida, a propriedade de estado inicial. 
+	Ex: ... name 
+
+E para averiguar tal situação, existe uma propriedade de JSON chamada de {JSON. stringify()}. (linha 20)
