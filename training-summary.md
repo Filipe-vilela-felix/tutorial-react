@@ -1317,3 +1317,28 @@ Nesta aula, vamos entender a motivação para useEffect.
 - O Effect Hook permite que executemos os efeitos colaterais em componentes funcionais.
 - É um sibstituto próximo para o componentDidMount(), componentDidUpdate(), componentWillUnMont().
 	Três métodos de ciclo de vida podem ser manipulados pelo useEffect Hook.
+
+
+aula_50: useEffect after render 
+
+Nesta aula, faremos um exemplo para ver como usar o useEffect hook que pode imitar o componentDidMount() e o componentDidUpdate, mas em componentes funcionais.
+
+Para uma melhor noção, será feito um componente de classe de contador (ClassCounterOne.js). Pois servirá de comparação com o componente funcional (HookCounterOne.js) ao usarmos o useEffect.
+
+No componente de classe criado:
+	- Inicializamos no contructor() o valor de contagem como 0. (linha 7)
+	- No componentDidMount(), usamos o valor inicial de contagem e definimos o título do documento para o valor de contagem. (linha 11 a 14)
+	- A seguir, no método onClick, incrementamos o valor de contagem em 1. (linha 25 a 27)
+	- E em seguida, o componentDidUpdate() atualizará o título do documento novamente. (linha 16 a 19)
+
+No componente funcional criado:
+	- No componete funcional, implementamos o useState. (linha 1)
+	- Criamos uma variável de estado para o contador, com o valor inicial 0. (linha 4)
+	- No JSX, em nosso onClick, incrementamos a contagem. (linha 13 a 15)
+	- Agora, para que o título do documento seja alterado após o clicar do botão, usaremos a função useEffect(). (linha 1 e 6)
+		Ao chama-la, passamos um parâmetro, e esse parâmetro é uma função que é executada após cada renderização do componente. (linha 6)
+		Então passaremos uma função de seta que atualiza a o título do documento. (linha 6 a 9)
+
+Explicando como tudo funciona quando especificamos o useEffect:
+	- Quando o usamos, estamos solicitando que o React execute a função que é passada como um argumento toda vez que o componente renderiza.
+		É basicamente o que tentamos fazer nos componentes de classe.
