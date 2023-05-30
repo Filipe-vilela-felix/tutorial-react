@@ -1308,3 +1308,12 @@ Segue o passo a passo:
 Explicando este passo a passo:
 	- Sempre em que o addItem é chamado, nós fazemos uma cópia de todos os itens no array usando o operador spreed. (linha 7)
 	- Para aquela lista de itens copiados, nós simplesmente acrescentamos outro objeto. Dessa forma, nâo estamos sobrescrevendo o array já criado. 
+
+
+aula_49: useEffect Hook
+
+Nesta aula, vamos entender a motivação para useEffect.
+
+- O Effect Hook permite que executemos os efeitos colaterais em componentes funcionais.
+- É um sibstituto próximo para o componentDidMount(), componentDidUpdate(), componentWillUnMont().
+	Três métodos de ciclo de vida podem ser manipulados pelo useEffect Hook.
