@@ -1288,3 +1288,23 @@ E para realizar ese ajuste, no onChange, ao lado do primeiro ou segundo nome, po
 	Ex: ... name 
 
 E para averiguar tal situação, existe uma propriedade de JSON chamada de {JSON. stringify()}. (linha 20)
+
+
+aula_48: useState with array
+
+Como usar o state Hook quando a variável de estado é uma matriz. E para este exemplo, o padrão é um awway vazio. (linha 4)
+
+Em seguida, vamos renderizar uma lista de itens no JSX. Precisamos adicionar uma tag ul, e dentro dela, mapear cada lista a ser renderizada. Onde cada item (parâmetro), renderizará uma lista, que por sua vez, terá seu próprio id e renderizará no navegador o valor do item.
+Logo, estamos lidando com matriz de objetos. (linha 16 a 20)
+
+Como não temos nenhum item para começar, então criaremos um botão no topo, que "empurra" o novo item no arryay, atravém de uma função do onClick. (linha 15);
+E dentro dessa função, chamamos a função setItems. (linha 7)
+Precisamos passar o valor a ser definido para a matriz de items, e foi aprendido na última aula que a função de seta não mescla ou atualiza, ou no caso de uma matriz, a função de seta não anexa automaticamente o item ao final da lista. Precisamos lidar com isso manualmente usando o operador spring.
+
+Segue o passo a passo:
+	1º) Então, o argumento para definir os itens será uma matriz, mas antes, espalhamos a matriz de items e depois "precionamos" um novo objeto. (linha 7)
+	2º) Para o novo objeto, o id será o tamanho do item. E seu valor será um valor alearótio entre 1 e 10.  (linhas 8 e 9)
+
+Explicando este passo a passo:
+	- Sempre em que o addItem é chamado, nós fazemos uma cópia de todos os itens no array usando o operador spreed. (linha 7)
+	- Para aquela lista de itens copiados, nós simplesmente acrescentamos outro objeto. Dessa forma, nâo estamos sobrescrevendo o array já criado. 
