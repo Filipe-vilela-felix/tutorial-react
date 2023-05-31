@@ -4,24 +4,28 @@ class ClassCounterOne extends Component {
     constructor() {
         super()
         this.state = {
-            count: 0
+            count: 0,
+            name: ""
         }
     }
 
     componentDidMount() {
         document.title = `Clicked ${this.state.count} times`
-        console.log("componentDidMount()")
     }
 
     componentDidUpdate(prevProps, prevState) {
-        document.title = `Clicked ${this.state.count} times`
-        console.log("componentDidUpdate()")
+        if(prevState.count != this.state.count) {
+            console.log("Updating document title")
+            document.title = `Clicked ${this.state.count} times`
+        }
     }
     
     render() {
-        const { count } = this.state
         return (
             <div>
+                <input type="text" value={this.name} onChange={(e) => {
+                    this.setState({ name: e.target.value })
+                }} />
                 <button onClick={() => this.setState({ count: this.state.count + 1 })}>
                     Click {this.state.count} times
                 </button>

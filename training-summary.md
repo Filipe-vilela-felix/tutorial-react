@@ -1342,3 +1342,25 @@ No componente funcional criado:
 Explicando como tudo funciona quando especificamos o useEffect:
 	- Quando o usamos, estamos solicitando que o React execute a função que é passada como um argumento toda vez que o componente renderiza.
 		É basicamente o que tentamos fazer nos componentes de classe.
+
+
+aula_ 51: 
+
+Vimos que o useEffect é chamado após cada renderização. E em alguns casos, aplicar o efeito após cada renderização pode criar poblemas de desempenho. Então precisamos de uma maneira de executar condicionalmente um efeito de um componenente funcional e no componente de classe. E isso será visto através dos exemplos usados na aula anterior:
+
+No componente de classe (ClassCounterOne.js):
+	- Além do código produzido na aula anterior.... criamos uma simples input. (linha 26 a 28)
+	- Porém, aspós a execução do input, o console.log() também é repetido, podendo acarretar em problemas de desempenho.
+	- Então, para executar condicionalmente um useEffect, usamos uma estrutura condicional para comparar o valor de contagem antes (prevState) e depois da atualização, e se o valor da contagem mudou, adicionamos condicionalmente o título. (linha 17 a 20)
+
+No componente funcional (HookCounterOne.js):
+	- Além do código produzido na aula anterior... criamos um simples input. (linha 6 e 15)
+	- Porém, aspós a execução do input, o console.log() também é atualizado, podendo acarretar em problemas de desempenho.
+	- Então, para executar condicionalmente um useEffect, passamos apenas um segundo parâmetro representado por uma matriz. Dentro dessa matriz precisamos especificar o props ou state que desejamos manipular, mas apenas se o props ou o estate determinado sofrer alteração, aí sim o efeito é executado. (linha 11)
+
+
+
+No componente de classe:
+	Vou adicionar um input de texto para este componente de classe que aceitará um nome de usuário.
+	Para tal execução, seguimos os passo a passo já aprendidos. (linhas 8, 26 a 28)
+	Após a criação do input, adicionamos um console.log() um texto para identificação
