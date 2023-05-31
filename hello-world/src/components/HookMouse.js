@@ -10,9 +10,21 @@ function HookMouse() {
         setY(e.clientY)
     }
 
+{/*
+     useEffect(() => {
+        console.log("useEffect called")
+        window.addEventListener("mousemove", logMousePosition)
+    }, []) 
+*/}
+
     useEffect(() => {
         console.log("useEffect called")
         window.addEventListener("mousemove", logMousePosition)
+
+        return () => {
+            console.log("Component unmouting code")
+            window.removeEventListener('mousemove', logMousePosition)
+        }
     }, []) 
 
     return (

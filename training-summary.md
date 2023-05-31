@@ -1372,3 +1372,24 @@ No componente funcional (HookMouse.js):
 	- Sigo o mesmo racioncínio feito no componente de classe, porém, atribuindo o useState e o useEffect.
 	- Porém, não é necessário que o useEffect seja executado mais de uma vez.
 	- Para fazer com que o useEffect seja executado apenas uma única vez, crio um segundo parâmetro representado por uma matriz vazia. (linha 16)
+
+
+aula_53: useEffect with cleanup (useEffect com limpeza)
+
+Vamos aprender a como fazer uso do componentWillUnmount() presente apenas em componentes de classe, e como passa-lo para um componente funcional através de um useEffec Hook.
+
+Criamos um novo componente chamado MouseCountainer.js. Nele, vamos adicionar um botão que irá alterar os componentes de visibilidade.
+
+No componente funcional (MouseCountainer.js):
+	- Criaremos uma variavel de estado de exibição, e seu valor inicial será "true". (linha 5)
+	- No JSX, adicionamos um botão para alternar a variável de estado entre verdadeiro e falso. (linha 8)
+	- Se esta variável de exibição estiver definida como verdadeira, renderizamos a exibição do componente HookMouse.js. (linha 9) 
+	
+	Note que ao observar tal código em execução na web, o mesmo funciona corretamente. Porém, no console do navegador, ainda somo capazes de ver as coordenadas sendo executadas através da funcionalidade de useEffect presente em HookMouse.ja mesmo que o componente tenha sido removido, o que não deveria acontecer, pois indica vazamento de memória. (linha 14 a 17)
+
+Em outras palavras, o componente está dizendo o seguinte:
+	- Hey, você desmontou o componente, mas quando você move o mouse, está me pedindo para atualizar as variáveis de estado para as coordenadas x e y. O único problema é que você precisa se lembrar de que quando você desmonta um componente, certifique-se de cancelar todas as suas assinaturas e listners.
+
+Agora, para lidar com o código de limpeza em um componente funcional, assim como o componentWillUnmount() lida em um componente de classe...no useEffect presente no HookMouse.js, incluo um retorno que terá uma função de seta, e em seu corpo, nós removemos a função de evento. (linha 26 em HookMouse.js)
+
+Obs: O cleanup (efeito de limpleza) pode cancelar timers de assinaturas ou até remover manipuladores de eventos como acabamos de ver;
