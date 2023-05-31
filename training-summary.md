@@ -1359,8 +1359,16 @@ No componente funcional (HookCounterOne.js):
 	- Então, para executar condicionalmente um useEffect, passamos apenas um segundo parâmetro representado por uma matriz. Dentro dessa matriz precisamos especificar o props ou state que desejamos manipular, mas apenas se o props ou o estate determinado sofrer alteração, aí sim o efeito é executado. (linha 11)
 
 
+aula_52: Run effects only once (Executando efeitos apenas uma vez):
 
-No componente de classe:
-	Vou adicionar um input de texto para este componente de classe que aceitará um nome de usuário.
-	Para tal execução, seguimos os passo a passo já aprendidos. (linhas 8, 26 a 28)
-	Após a criação do input, adicionamos um console.log() um texto para identificação
+No vídeo desta aula, foi visto como executa o useEffect apenas uma vez. Embora o foco seja no componente funcional, faremos no componente de classe também, para ter uma base geral.
+
+No componente de classe (ClassMouse.js):
+	- Temos no constructor variáveis para armazenar as posições das coordenadas x e y. 
+	- No componentDidMount(), adicionamos um 'mousemove' que registra a posição do mouse presente na função logMousePosition. (linha 16 a 18 e 12 a 15)
+	- E então renderizamos essa posição. (linha 23)
+
+No componente funcional (HookMouse.js):
+	- Sigo o mesmo racioncínio feito no componente de classe, porém, atribuindo o useState e o useEffect.
+	- Porém, não é necessário que o useEffect seja executado mais de uma vez.
+	- Para fazer com que o useEffect seja executado apenas uma única vez, crio um segundo parâmetro representado por uma matriz vazia. (linha 16)
