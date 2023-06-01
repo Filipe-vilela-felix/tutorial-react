@@ -1473,3 +1473,18 @@ Para recuperar uma postagem individual nós apenas temos que anexar o id da barr
 - No JSX, comento a lista de postagens e em seu lugar, renderizo apenas um único post. (linha 26 a 28 e 23 respectivamente)
 
 Obs: Para que o useEffect() renderize as mudanças de id, a dependêndia não deve ficar vazia. Por esse motivo, incluimos nela o id. (linha 18)
+
+
+aula_57: Fetching data with useEffect - (Part 3)
+
+O intuito desta aula será para adicionar um botão de clicagem ao código realizado na aula anterior.
+
+O que fariamos normalmente é criar um botão e adicionar um manipulador de cliques. E dentro do manipulador de cliques, faríamos o request. Porém, queremos saber como fazer o mesmo com o useState Hook.
+
+- A primeira coisa que precisamos é de um variavel de estado cujo valor mudará apenas com base no clique do botão. Porém, o único valor que vemos mudando até então é id da postagem. (linha 10 da aula anterior)
+- Então vamos criar uma nova variável de estado cujo valor padrão será 1. (linha 11)
+- Em seguida, vamos adicionar um botão abaixo do input e criar um manipulador. (linha 28)
+- Na função de manipulador criada, o nosso setState(setIdFromButtonClick) passará o valor do id atual, que é o valor do campo de input. (linha 21 a 23)
+- A etapa final é informar ao .get que agora ele depende do id presente no clique, em vez do id presente no onChange. (linha 11)
+
+Obs: Para que o clicar botão faça a alteração desejada a partir do input, é necessário incluir a variável de estado do botão como dependencia. (linha 19) 
