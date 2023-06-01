@@ -1393,3 +1393,46 @@ Em outras palavras, o componente está dizendo o seguinte:
 Agora, para lidar com o código de limpeza em um componente funcional, assim como o componentWillUnmount() lida em um componente de classe...no useEffect presente no HookMouse.js, incluo um retorno que terá uma função de seta, e em seu corpo, nós removemos a função de evento. (linha 26 em HookMouse.js)
 
 Obs: O cleanup (efeito de limpleza) pode cancelar timers de assinaturas ou até remover manipuladores de eventos como acabamos de ver;
+
+
+aula_54: useEffect with incorrect dependency (useEffect como dependencia incorrerta)
+
+Nesta aula, foi dado um exemplo destacando um erro comum entre iniciantes, principalmenter se estiver aprendendo hooks com conhecimento dos componentes de classe.
+
+Vamos criar um contador simples, mas desta vez, ele será incrementado automaticamente a cada segundo. Vamos passar rapidamente pela implementação do componente de classe em IntervalClassCounter.js.
+
+No componente de classe (IntervalClassCounter.js):
+	- Em constructor(), criamos uma variável de estado chamada de count, e inicializada em 0.
+	- Em seguida, precisamos criar um cronômetro de intervalo que atualizará o valor de contagem em 1.
+		A política para criar cronômetros é no componentDidMount(). (linha 11 a 13)
+		Então criamos um componente de intervalo que é executado a cada segundo. E a cada segundo, executamos o método tick. (linha 12)
+	 	E o método tick incrementa o valor de contagem em 1, portanto, a cada segundo. (linha 19 a 23)
+	- O cronômetro também precisa ser limpo para evitar vazamento de memória, e por isso, o colocamos no componentWillUnMount(). (linha 15 a 17)
+	- Finalmente, na renderização, nós exibimos o valor de contagem. (linha 26)
+
+Agora implementaremos o mesmo em componetes funcionais.
+
+No componente funcional (IntervalHookCounter.js): minuto 2:00 a 4:24
+	- Primeiro passo é criar nosso useStatte e uma variável chamada count, que será inicializada com 0.
+	- Renderizamos essa variável de estado no navegador.
+	- A próxima etapa é configurar nosso cronômetro. E podemos notar que vamos replicar a função tick e o componentDidMount() feito no componente de classe. Claro que com as alterações necessárias.
+	- Se quisermos que o intervalo seja configurado apenas uma vez na renderização inical como feito no componente de classe, devemos passar uma matriz vazia como segundo parâmetro.
+	- O cronômetro também precisa ser limpo para evitar vazamento de memória, e por isso, no lugar do componentWillUnMount() como feito no componente de classe, criaremos um return de um função de seta, que em seu corpo, limpamos o intervalo.
+
+No App.js ao deixarmos os dois componentes em pleno funcionamente, o componente de classe estará funcionando conforme o esperado. Mas o componente funcional está exibindo o valor de 1 e não incrementa a cada segundo como deveria, mesmos os dois possuindo as mesmas funcionalidades.
+
+Por que nosso contador no componente funcional não funciona como esperado?
+
+Vale ressaltar que a matriz de dependência deve ser pensada como uma maneira de permitir que o React saiba sobre tudo o que o useEffect deve observar para mudanças. E na execução realizada até aqui, nossa mentalidade era simplesmente replicar o componentDidMount(), no entanto, especificando uma matriz vazia, basicamente dissemos ao React para ignorar a observação de alterações na variável de contagem.
+
+Resumindo, é um erro comum iniciantes deixar de fora a lista de dependências. 
+
+Então se adicionarmos a contagem na lista de depenência e dermos uma olhada no navegador, notaremos que o componente funcional está encrementando corretamente juntamente com o compnente de classe.
+
+Então sempre que você tentar especificar uma lista de dependências vazia, certifique-se de quer você realmente não tem nenhuma.
+
+Porém, para este exemplo, existe uma outra maneira de faze-lo funcionar sem a lista de dependências, que é adicinando um prevCount no lugar do simples caunt. Dessa forma, não precisamos especificar a contagem como uma dependência para esse efeito específico, pois a contagem definida mantém o controle do valor da cantagem anterior. (linha )
+
+...
+
+Para entender como funciona o efeito de laço, que tb funcina como dependencia: assistir ao vídeo da aula no minuto 7:31 ao 8:36.
