@@ -1436,3 +1436,21 @@ Porém, para este exemplo, existe uma outra maneira de faze-lo funcionar sem a l
 ...
 
 Para entender como funciona o efeito de laço, que tb funcina como dependencia: assistir ao vídeo da aula no minuto 7:31 ao 8:36.
+
+
+aula_55: Fetching data with useEffect - (part 1)
+
+Nesta aula, faremos um get request como foi feito no componente de classe na aula_42, porém, agora em um componente funcional (DataFetchin.js). 
+
+A primeira coisa a se fazer é instalar o axios no terminal: npm install axios.
+Obs: Como  o axios já foi instalado nesse projeto, não será realizado novamente.
+
+- Após a importação do useState, do useEffect e do axios, nosso próximo passo é buscar os dados para que possamos usar o placeholder JSON.
+- No navegador, acesse https://jsonplaceholder.typicode.com/, e vá para Resources e acesse o primeiro /post. E ao clicar no link, terá acesso aos dados JSON e o endpoint (url) para fazer a solicitação get e buscar os dados. 
+- Após isso, primeiramente criaremos uma variável de estado que conterá uma string vazia. (linha 5)
+- Em seguida, vamos criar nosso useEffect para buscar os dados do endpoint. E em seguida, repetiremos a solicitação já conhecida na aula_42. (linha 7 a 17)
+- No JSX crio uma lista não ordenada e vamos mapear as postagens. E para cada postagem, retornaremos o item da lista. (linha 21 a 25)
+
+Obs: Para que a matriz de postagem seja renderizada na tela, se faz necessária a definição do setState e detalhar nele o objeto mais o dado necessário. (linha 12)
+
+Obs: Para que os dados importados através do useEffect não fiquem em infita repetição, adicionamos como segundo argumento uma lista de dependencia vazia. (linha 17)
