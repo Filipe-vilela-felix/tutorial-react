@@ -33,3 +33,5 @@ function ComponentF() {
 }
 
 export default ComponentF
+
+// Agora note a diferença com o ComponentE.js

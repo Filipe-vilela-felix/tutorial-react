@@ -1518,3 +1518,25 @@ O recurso de context em si é ótimo como podemos ver na aula 39, em componente 
 	Obs: Não esqueça de importar o ChannelContext ao lado de UserContext. (linha 2);
 
 Note que este não é um código tão intuitivo e de fácil entendimento pois há muito aninhamento. E por esse motivo que na próxima aula usaremos o useContext Hook.
+
+
+aula_60: useContext Hook - (part 3)
+
+Nesta aula, veremos como usar o useContext Hook no React.
+
+No aula anterior, vimos três etapas para consumir um valor de context:
+	1ª) Criamos um context, usando o React.createContext().
+	2ª) Fornecemos o valor de context em um alto nível na árvore de componentes.
+	3ª) Consumimos o valor de context usando o padrão render props.
+
+Agora, veremos como fazer o mesmo com o uso de useContext Hook.
+
+No useContext as duas primeiras etapas de criar um context e forncer um valor de contexto permanece o mesmo.
+O useContext Hook apenas torna o consumo do valor de context mais simples.
+
+Para o aprendizado do useContext, vamos consumir o valor no componentE.js. E para isso, há três passos simples: tempo 1:08
+	1º) Importar useContext do React. (linha 1);
+	2º) Importar os context necessários. (linha 3);
+	3º) Chamaremmos a função useContext para cada context necessário, que por sua vez, retornarão o valor de context. (linha 6 e 7);
+
+Note agora a diferença entre o ComponentF.js e o ComponentE.js. Ambos apresentam a mesma funcionalidade. Mas graças ao useContext Hook, o ComponentE.js fico muito masi fácil de ser entendido. 
