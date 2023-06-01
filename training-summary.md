@@ -1454,3 +1454,22 @@ Obs: Como  o axios já foi instalado nesse projeto, não será realizado novamen
 Obs: Para que a matriz de postagem seja renderizada na tela, se faz necessária a definição do setState e detalhar nele o objeto mais o dado necessário. (linha 12)
 
 Obs: Para que os dados importados através do useEffect não fiquem em infita repetição, adicionamos como segundo argumento uma lista de dependencia vazia. (linha 17)
+
+
+aula_56: Fetching data with useEffect - (Part 2)
+
+Nesta aula veremos como buscar postagens individuais passando o id da postagem para a solicitalção get.
+
+Se voltarmos so placeholder JSON (https://jsonplaceholder.typicode.com/) em Routes, podemos ver que temos o /post/1, que retorna uma única postagem com id. E no link nele presente, cada número depois da barra representa um único objeto em que posso fazer a solicitação. Obs: Posso alterar os id's nas postagens pelo próprio link.
+
+Para recuperar uma postagem individual nós apenas temos que anexar o id da barra de navegação à url que já estamos usando (visto na aula passada).
+
+- Na primeira etapa, precisamos criar um input que aceitará um id de postagem do usuário. (linha 22)
+- Precisamos criar uma variável de estado de nome id, que por sua vez, será inicializada com 1. (linha 6)
+- Agora é necessário fazer algumas alterações no código existente:
+- Incrementaremos o link no endpoint à variável crida. (linha 10)
+- Com isso, quando fizermos a solicitação request (get), receberemos de volta uma única postagem em vez de uma série de postagens.
+- Agora, alteraramos a variável de estado para o singular e no useState, no lugar de uma matriz vazia, colocaremos um objeto vazio. (linha 5)
+- No JSX, comento a lista de postagens e em seu lugar, renderizo apenas um único post. (linha 26 a 28 e 23 respectivamente)
+
+Obs: Para que o useEffect() renderize as mudanças de id, a dependêndia não deve ficar vazia. Por esse motivo, incluimos nela o id. (linha 18)
