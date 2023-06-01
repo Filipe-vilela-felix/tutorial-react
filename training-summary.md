@@ -1488,3 +1488,33 @@ O que fariamos normalmente é criar um botão e adicionar um manipulador de cliq
 - A etapa final é informar ao .get que agora ele depende do id presente no clique, em vez do id presente no onChange. (linha 11)
 
 Obs: Para que o clicar botão faça a alteração desejada a partir do input, é necessário incluir a variável de estado do botão como dependencia. (linha 19) 
+
+
+aula_58: useContext Hook - (Part 1)
+
+Nesta e nas próximas aulas, part 2 e 3, vamos aprender sobre outro hook, o context.
+Na part 1, vamos aprender o que é o context API.
+Na parte, vamo entender como o context do React foi usado antes dos hooks.
+Na parte 3, aprenderemos como o hook de context funciona.
+
+O contexto fornece uma distância para passar dados através do componente três sem ter que passar adereços manualmente em todos os níveis.
+Obs: Para acessar a explicação desta aula, veja a aula_38 no "training-summary.md" ou acessar o commit "context (part 1)".
+
+
+aula_59: useContext Hook - (Part 2)
+
+Nesta aula, veremos como o context API era usado antes da introdução de Hooks, para entender como o código funciona e comparar com o código da parte 3 (próxima aula).
+Obs: Veja a aula_39 no "training-summary" ou acesse o commit "context (part 2)" para entender a introdução de context. O sentido da execução é o mesmo entre as duas aulas, mas nesta aula de agora passamos todos os componentes para funcionais.
+
+Obs: Nesta aula, retiramos o componente próprio criado pela aula 39 (userContext.js), porque foi decidido no vídeo desta aula que o context seria feito a partir do App.js, sem um componente próprio.
+
+O recurso de context em si é ótimo como podemos ver na aula 39, em componente de classe ou nesta aula, em componente dfuncionais. Mas vamos ver como consumir vários valores de context:
+- Em App.js criamos outro context. (linha 6 em App.js)
+- Agora vamos fornecer a esse context um valor. (linha 12 em App.js)
+	Podemos fornecer vários valores de context, simplesmente adicionando os provedores em cada nível.
+- A parte final é consumir isto, e é onde começa a ficar bagunçado:
+	No ComponentF.js, temos o context do usuário, que nos dá acesso ao texto. (linha 23 a 29);
+	Porém, no corpo da função precisamos obter novamente o .Consumer para obter o nome do channel. (linha 11 a 17);
+	Obs: Não esqueça de importar o ChannelContext ao lado de UserContext. (linha 2);
+
+Note que este não é um código tão intuitivo e de fácil entendimento pois há muito aninhamento. E por esse motivo que na próxima aula usaremos o useContext Hook.
