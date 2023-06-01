@@ -1540,3 +1540,20 @@ Para o aprendizado do useContext, vamos consumir o valor no componentE.js. E par
 	3º) Chamaremmos a função useContext para cada context necessário, que por sua vez, retornarão o valor de context. (linha 6 e 7);
 
 Note agora a diferença entre o ComponentF.js e o ComponentE.js. Ambos apresentam a mesma funcionalidade. Mas graças ao useContext Hook, o ComponentE.js fico muito masi fácil de ser entendido. 
+
+
+aula_61: userReducer Hook
+
+useReducer é um gancho que é usado para gerenciamento de estado no React, sendo uma alternativa do useState.
+useReducer está relacionado à funções redutoras.
+useReducer aceitará dois parâmetros: reducer e initialState. Ex: useReducer(reducer, initialState);
+A função tb aceita dois parâmetros: o estado inicial e a ação. Ex: reducer(currentState, action)
+
+O useReductor é basicamente mudar o state em componentes React.
+
+Todos os Hooks aprendidos até aqui tem um significado por trás de seus nomes:
+	- useState está relacionado ao estado (state);
+	- useEffect está relacionado à efeitos colaterais (side effects);
+	- useContext está relacionado à context API;
+	Então usando a mesma lógica: 
+		- useReducer está relacionado à reducers;
