@@ -1547,7 +1547,7 @@ aula_61: userReducer Hook
 useReducer é um gancho que é usado para gerenciamento de estado no React, sendo uma alternativa do useState.
 useReducer está relacionado à funções redutoras.
 useReducer aceitará dois parâmetros: reducer e initialState. Ex: useReducer(reducer, initialState);
-A função tb aceita dois parâmetros: o estado inicial e a ação. Ex: reducer(currentState, action)
+A função tb aceita dois parâmetros: o estado atual e a ação. Ex: reducer(currentState, action)
 
 O useReductor é basicamente mudar o state em componentes React.
 
@@ -1557,3 +1557,21 @@ Todos os Hooks aprendidos até aqui tem um significado por trás de seus nomes:
 	- useContext está relacionado à context API;
 	Então usando a mesma lógica: 
 		- useReducer está relacionado à reducers;
+
+
+aula_62: useReducer(simple state & action)
+
+Nesta aula usaremos o useReducer através de um exemplo simples de contador, pois assim teremos a chance de comparar o código de com o exemplo de contador que foi implementado usando o useState Hook no início da série (aula_46).
+
+Resumindo o vídeo presente na aula:
+	1º) Importamos o useReductor no React. (linha 1);
+		Depois disso, dentro do nosso componente, chamamos o useReductor passamos dois parâmtros: uma função (reducer) e um estado inicial. (linha 18);
+		O estado inicial é um valor numérico definido com 0. (linha 3);
+		A função reducer aceita dois parâmetros: o estado atual e uma ação, e retorna um novo estado dependendo da ação. (linha 4) 
+			Se a ação for incrementada, ela retorna um valor do estado + 1. (linha 6 e 7);
+			Se for decrementada, retorna em - 1. (linha 8 e 9); 
+			Se for redefinida retorna o valor do estado inicial. (linha 10 e 11);
+			Por fim, se uma ação for desconhecida não fazemos nada para alterar a variável. (linha 12 e 13);
+		E de volta ao useReducer, podemos ver que para usar o reducer que se encontra no primeiro parâmtro, se faz necessário retornar um par de valores: o count e o dispatch. (linha 18); 
+			O cont está representando o valor atual do estado. (linha 22); 
+			E o método dispatch que é capaz de aceitar uma ação para executar o código especificado. (linha 23 a 25);
