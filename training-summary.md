@@ -1602,3 +1602,18 @@ Depois de criado os objetos de estado e ação, qual é sua vantagem?... Para is
 
 	2º) Para o segundo cenário vamos supor que queremos manter dois contadores diferentes através de um novo objeto. Obs: Para acompanhar a explicação, assistir o vídeo no minuto 5:07;
 		A explicação presente no vídeo a cerca deste segundo exemplo, é que podemos manter o estado e a ação como objetos. Usando a ação como objeto somos capazes de passar dados adicionais para a função redutora. Usando o estado como objeto somos capazes de acompanhar várias variáveis de estado 
+
+
+aula_64: Multiple useReducers
+
+Na aula passada, mantivemos um objeto de estado para rastrear dois contadores diferentes. Para atualizar o segundo contador, também tivemos que criar casos de troca na função redutora (switch...case). Mas se precisarmos de dois contadores com exatamente as mesmas transições de estado, há uma alternativa muito mais simples: Multiple useReducers.
+
+Nesta aula, usaremos como base o código presente na aula_62.
+
+Após copiado...o requisito para esta aula é adicionar outro contador, o qual também terá as mesmas transições de estado: increment, decrement e reset.
+
+E se esse for de fato o cenário, podemos facilmente criar contadores adicionais simplesmente especificando múltiplos useReducers. Então logo após o primeiro useReducer, podemos chamar outro useReducer. (linha 19);
+
+E agora no JSX posso duplicar o código. (linha 27 a 30)
+
+Desta forma, ao olharmos no navegador, devemos ter dois contadores, ambos trabalhando independentemente, mesmo que estejam usando o mesmo trecho de código.
