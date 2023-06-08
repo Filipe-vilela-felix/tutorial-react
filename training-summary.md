@@ -1575,3 +1575,30 @@ Resumindo o vídeo presente na aula:
 		E de volta ao useReducer, podemos ver que para usar o reducer que se encontra no primeiro parâmtro, se faz necessário retornar um par de valores: o count e o dispatch. (linha 18); 
 			O cont está representando o valor atual do estado. (linha 22); 
 			E o método dispatch que é capaz de aceitar uma ação para executar o código especificado. (linha 23 a 25);
+
+
+aula_63: userReducer(complex state & action)
+
+Nesta aula, ao invés de fazermos uso de um simples estado e ação como na aula anterior, vamos usar um objeto de estado e um objeto de ação. Este será um exemplo familiar a todos os usuários de useReducer.
+
+Para o início, copiaremos e colaremos o código feito na aula anterior e alteraremos o nome do componente. Em seguida, nosso estatdo inicial será um objeto e terá uma propriedade com valor 0. (linha 4);
+
+No JSX, precisamos renderizar essa primeira propriedade do contador. (linha 29);
+
+Finalmente, convertemos nossa ação de string simples em um objeto. O objeto vai conter uma propriedade chamada type, que é uma string. (linha 32, 34, 37, 40, 44, 47 e 52);
+
+E na função reducer, a expressão switch agora será action.type. (linha 8);
+
+Então action refere-se a todo o objeto e nós acessamos a propriedade type.
+
+Finalmente, para incrementar e decrementar as ações, precisamos retornar o novo objeto de estado. (linha 10, 12); 
+
+Depois de criado os objetos de estado e ação, qual é sua vantagem?... Para isso, podemos pensar em dois cenários em que poderia sr útil:
+	1º) O primeiro cenário é sobre o valor pelo qual precisamos incrementar e decrementar o contador de 5 em 5 além dos já criados até aqui. E isso é facil quando se trata de um objeto.
+
+		Podemos adicionar uma segunda propriedade chamada value, que deve ser o número para incrementar e decrementar o contador. Então para os botões já existentes, adicionamos um conjunto de propriedades de value e duplicamos os botões. (linha 31, 34, 37 e 40);
+
+		Na função reducer, invés do valor codificado ser 1, especificamos o valor de ação. (linha 10, 12, 14 e 16);
+
+	2º) Para o segundo cenário vamos supor que queremos manter dois contadores diferentes através de um novo objeto. Obs: Para acompanhar a explicação, assistir o vídeo no minuto 5:07;
+		A explicação presente no vídeo a cerca deste segundo exemplo, é que podemos manter o estado e a ação como objetos. Usando a ação como objeto somos capazes de passar dados adicionais para a função redutora. Usando o estado como objeto somos capazes de acompanhar várias variáveis de estado 
