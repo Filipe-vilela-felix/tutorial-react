@@ -1617,3 +1617,24 @@ E se esse for de fato o cenário, podemos facilmente criar contadores adicionais
 E agora no JSX posso duplicar o código. (linha 27 a 30)
 
 Desta forma, ao olharmos no navegador, devemos ter dois contadores, ambos trabalhando independentemente, mesmo que estejam usando o mesmo trecho de código.
+
+
+aula_65: useReducer with useContext
+
+Até agora vimos exemplos de useReducer com gerenciamento de estado local. Mas em algum momento podemos querer compartilhar o estado entre os componentes, ou seja, podemos querer trabalhar com o estado global. E para isso, combinamos o useReducer com o useContext.
+
+Obs: Trataremos este exemplo de forma semelhante a aula de useContext;
+
+Para introdução do assunto, explicaremos o cenário a ser utilizado: tempo 0:50, tempo 4:16, tempo 11:10
+	Considere um aplicativo com componentes de A a F, e queremos compartilhar um estado de contador apenas entre os componenetes A, D e F.
+	Para isso, implementaremos um contador global em App.js e passaremos métodos como props para os três componentes. Os três componentes podem ter manipuladores que chamam os props.
+
+Segue o resumos das etapas que foram seguidas:
+	1) Em App.js criamos nosso contador usando o Hook useReducer. Obs: Contador tal qual foi copiado do componente CounterOne.js;
+		1.1) Declaramos o estado inicial e definimos a função reducer que modifica esse estado. 
+		1.2) Passamos os dois parâmetros para usar o reducer que retorna o valor do estado e o método dispatch. (linha 24);
+		1.3) Para fornecer esses pares de valores criamos um context chamado de CountContext. (linha 7);
+		1.4) No provider, fornecemos os dois valores como um objeto. (linha 27);
+	2) Nos componentes necessários, usamos o context para obter os valores de context e acessar os valores.
+
+Obs: Para melhor detalhe da explicação, assista o vídeo desta aula;
