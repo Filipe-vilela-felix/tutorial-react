@@ -1638,3 +1638,39 @@ Segue o resumos das etapas que foram seguidas:
 	2) Nos componentes necessários, usamos o context para obter os valores de context e acessar os valores.
 
 Obs: Para melhor detalhe da explicação, assista o vídeo desta aula;
+
+
+aula_66: Fetching data with useReducer - (Part 1)
+
+Como objetivo de comparação envolvendo a busca de dados entre o useState (já aprendido) e eo useReducer. Nesta aula, examinaremos exclusivamente a busca de dados com useState e no próximo vídeo, com o useReducer. Obs: Em ambas as aulas o cenário permanece o mesmo;
+
+Caso de uso:
+	Assim que o componenente for montado, faremos uma chamada de API para busca de dados; 
+	Enquanto estão sendo buscados, mostraremos um indicador de carregamento; 
+	Quando os dados forem buscados com sucesso, ocultaremmos o inidcador de carregamento e exibiremos os dados; 
+	Se houver um erro ao buscar os dados, ocultaremos o indicador de carregamento e exibiremos uma mensagem.
+
+Passo a passo da execução:
+	1) Começaremos com nossas importações: usamos o useState para gerenciamento de estado, o useEffect para efeito colateral (substituição do componentDdidMount()) e por fim, importamos o axios para fazer a chamada http. (linha 1 e 2)
+	2) Precisamos definir o estado variado para este componente de busca de dados. Para este cenário, precisamos de três variáveis de estado: 
+		- Uma variável que será um sinalizador de carregamento para indicar que a busca de dados está acontecendo em segundo plano, cujo valor inicial será true. (linha 5); 
+		- Uma variável que será uma mesagem de erro para exibir um erro se algo der errado, cujo valor inicial será uma string vazia. (linha 6);
+		- Uma variável para manter a postagem que buscaremos de um endpoint, cujo valor inicial será um objeto vazio. (linha 7);
+	3) Fazer uma chamada API e definir os estados apropriados.
+		- Para efeitos colaterais, usamos o useEffect, o qual aceita uma função de seta como seu parâmetro. E para o segundo parâmetro, passamos uma matriz de dependência vazia (garantindo que seja chamada apenas uma vez). (linha 9 e 22);
+		- Dentro da nossa função de seta, fazemos nossa solicitação get (get request). (linha 11);
+		- Quando a solicitação get for feita, uma promessa será retornada. Vamos adicionar um bloco .then() e um bloco .catch(). (linha 12 e 17)
+			No bloco .then(), se a solicitação for bem sucedida, fazemos três transações de estado:
+				1ª) Definimos o carregamento como falso. (linha 13);
+				2ª) Definimos a variável post como objetivo de conter apenas o objeto post. (linha 14);
+				3ª) Finalmente, definimos a mensagem de erro como string vazia para limpar qualquer mensagem anterior (se é que elas estavam sendo exibidas rsrs). (linha 15);
+			No bloco .catch(), o qual deve ser feito pois nossa solicitação pode não ser bem-sucedida sempre, fazemos também três transações:
+				1ª) Definimos o sinalizador e caregamento como falso. (linha 18);
+				2ª) Definimos a variavel post como objeto vazio, para ocultar qualquer postagem existente que possa ser exibida no navegador. (linha 19);
+				3ª) Finalmente, definimos a mensagem de erro como uma string que conterá uma mensagem para o usuário. (linha 20);
+	4) No JSX, fazemos a seguinte lógica condicional ternária: Se o componente estiver ocupado carregando os dados, vamos exibir uma string "loading", caso contrário, exibiremos o título presente no post. (linha 26)
+	5) Em seguida, também no JSX, fazemos a seguinte lógica condicional ternária: Se houer erro, precisaremos exibi-lo, caso contrário, retorne null. (linha 27);
+
+IMPORTANTE:
+	Vale ter como entendimento a forma como estamos usando o estado. Declaramos três variáveis e, dependendo da API retornamos uma resposta bem sucedida ou um erro. 
+	Na próxima aula, varemos como conseguir o mesmo com useReducer.
