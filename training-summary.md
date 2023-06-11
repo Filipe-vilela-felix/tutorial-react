@@ -1674,3 +1674,37 @@ Passo a passo da execução:
 IMPORTANTE:
 	Vale ter como entendimento a forma como estamos usando o estado. Declaramos três variáveis e, dependendo da API retornamos uma resposta bem sucedida ou um erro. 
 	Na próxima aula, varemos como conseguir o mesmo com useReducer.
+
+
+aula_67: Fetching data with useReducer - (Part 2)
+
+Como objetivo de comparação envolvendo a busca de dados entre o useState (já aprendido) e eo useReducer. Ao contrário da aula passada, examinaremos exclusivamente a busca de dados com useReducer. Obs: Em ambas as aulas o cenário permanece o mesmo;
+
+Caso de uso:
+	Assim que o componenente for montado, faremos uma chamada de API para busca de dados; 
+	Enquanto estão sendo buscados, mostraremos um indicador de carregamento; 
+	Quando os dados forem buscados com sucesso, ocultaremmos o inidcador de carregamento e exibiremos os dados; 
+	Se houver um erro ao buscar os dados, ocultaremos o indicador de carregamento e exibiremos uma mensagem.
+
+Passo a passo da execução: tempo 0:34
+	1) Começaremos com as importaçõe: usamos o useReducer para gerenciamento de estado, o useEffect para efeito colateral (substituição do componentDdidMount()) e por fim, importamos o axios para fazer a chamada http. (linha 1 e 2);
+
+	2) Declararemos o estado inical e definiremos a função reducer:
+		- Para o estado inicial, usaremos as mesmas variáveis da aula anterior, porém, as declararemos como propriedades de um único objeto:
+			- Uma variável que será um sinalizador de carregamento para indicar que a busca de dados está acontecendo em segundo plano, cujo valor inicial será true. (linha 5); 
+			- Uma variável que será uma mesagem de erro para exibir um erro se algo der errado, cujo valor inicial será uma string vazia. (linha 6);
+			- Uma variável para manter a postagem que buscaremos de um endpoint, cujo valor inicial será um objeto vazio. (linha 7);
+		- Para a função reducer, a qual aceita um estado e ação como seus parâmetros e retorna um estado atualizado:
+			- Replicaremos os dois claros cenários de transição de estado: um quando os dados forem buscados com sucesso e outro quando houver erro na busca dos dados. Ambos os cenários formam os switch cases para para nossa função redutora.
+			- Então teremos um switch, cuja expressão será action.type. (linha 11)
+			- O primerio caso de busca, caso bem sucedide: Retornaremos o carregamento para false, a postagem será action.payload e, finalmente, o erro será definido como uma string vazia. (linha 12 a 17);
+			- O segundo caso de busca, caso mal sucedido: Retornaremos o carregamento para false, a postagem será um objeto vazio e, finalmente, definimos a mensagem de erro como uma string que conterá uma mensagem para o usuário. (linha 18 a 23);
+			Obs: Adicionaremos também um caso padrão que reotrnará um estado atual, embora não exijamos para o nosso exemplo. (linha 24 a 26);
+	
+	3) Buscaremos os dados e definiremos o setState:
+		- Dentro do componente useReducer, chamamos a função reducer e o estado inicial, que por sua vez, já foi definido. Tal componente retorna um par de valores que é o estato atual e o método dispatch. (linha 30);
+		-  Para nossa chamada http, copiaremos o useEffect feito na aula anterior, porém com as alterações cabíveis. A única alteração necessária é substituir todas as ocorrências de useState par useReducer. (linha 32 a 41);
+		- No bloco .then(), se a solicitação for bem sucedida, nós despachamos (dispatch) uma ação. A ação embora é um objeto com tipo (type) definido e o payload para captar apenas os dados. (linha 35 a 37);
+		- No bloco .catch(), se a solicitação for mal sucedida, nós despachamos (dispatch) uma ação. A ação embora é um objeto com tipo (type) definido e não precisamos de um payload aqui, pois codificamos a mensagem de erro. (linha 38 a 40);
+	4) No JSX, fazemos a seguinte lógica condicional ternária: Se o componente estiver ocupado carregando os dados, vamos exibir uma string "loading", caso contrário, exibiremos o título presente no post. (linha 45);
+	5) Em seguida, também no JSX, fazemos a seguinte lógica condicional ternária: Se houer erro, precisaremos exibi-lo, caso contrário, retorne null. (linha 46);
