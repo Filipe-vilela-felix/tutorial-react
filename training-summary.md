@@ -1708,3 +1708,18 @@ Passo a passo da execução: tempo 0:34
 		- No bloco .catch(), se a solicitação for mal sucedida, nós despachamos (dispatch) uma ação. A ação embora é um objeto com tipo (type) definido e não precisamos de um payload aqui, pois codificamos a mensagem de erro. (linha 38 a 40);
 	4) No JSX, fazemos a seguinte lógica condicional ternária: Se o componente estiver ocupado carregando os dados, vamos exibir uma string "loading", caso contrário, exibiremos o título presente no post. (linha 45);
 	5) Em seguida, também no JSX, fazemos a seguinte lógica condicional ternária: Se houer erro, precisaremos exibi-lo, caso contrário, retorne null. (linha 46);
+
+
+aula_68: useState vs useReducer
+
+Nesta aula serão apresentados cenários para comparação entre o useState e useReducer:
+
+			Cenário							  	   useState						useReducer
+
+		Tipo de estado						Número, String, Boolean			  Objeto ou Array
+	Número de transição de estado				   Um ou dois					  Muitos
+	Transição de estado relacionada?			      No							Yes
+		Lógica de negócios?					Sem lógica de negócios		 Lógica de negócios complexa
+		Local vs global 						     Local							Global
+
+Obs: Infelizmente não foi possível transcrever a explicação da aula porque a mesma não tinha tradução;
