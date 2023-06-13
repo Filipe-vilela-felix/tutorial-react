@@ -1,27 +1,29 @@
-import React, { Component } from 'react';
-import ChildComponent from './ChildComponent'
+import React, { useState, useCallback } from 'react'
+import Count from './Count'
+import Button from './Button'
+import Title from './Title'
 
-class ParentComponent extends React.Component {
-    
-    constructor() {
-        super()
-        this.state = {
-            parentName: 'parent'
-        }
-        this.greetParent = this.greetParent.bind(this)
-    }
+function ParentComponent() {
+	const [age, setAge] = useState(25)
+	const [salary, setSalary] = useState(50000)
 
-    greetParent(childName) {
-        alert(`Hello ${this.state.parentName} from ${childName}`) // Este é um recurso do es6/es7 que substitui a concatenação
-    }
-    
-    render() {
-        return(
-            <div>
-                <ChildComponent greetHandler={this.greetParent} />
-            </div>
-        )
-    }
+	const incrementAge = useCallback(() => {
+		setAge(age + 1)
+	}, [age])
+
+	const incrementSalary = useCallback(() => {
+		setSalary(salary + 1000)
+	}, [salary])
+
+	return (
+		<div>
+			<Title />
+			<Count text="Age" count={age} />
+			<Button handleClick={incrementAge}>Increment Age</Button>
+			<Count text="Salary" count={salary} />
+			<Button handleClick={incrementSalary}>Increment Salary</Button>
+		</div>
+	)
 }
 
 export default ParentComponent

@@ -1723,3 +1723,40 @@ Nesta aula serão apresentados cenários para comparação entre o useState e us
 		Local vs global 						     Local							Global
 
 Obs: Infelizmente não foi possível transcrever a explicação da aula porque a mesma não tinha tradução;
+
+
+aula_69: useCallback Hook
+
+Antes de aprendermos sobre o uso do useCallback, aprenderemos sobre otimização de desempenho 
+
+Resumindo a funcionalidade do ParentComponent, o qual faz 5 coisas:
+	- Mostra um título;
+	- Mostra a idade de uma pessoa;
+	- Fornece um botão para incrementar a idade dessa pessoa;
+	- Mostra o salário dessa pessoa;
+	- E fornece um botão para aumentar o salário 
+
+O código foi escrito dessa maneira específica em vários componentes porque precisamos entender sobre otimização de desempenho e é claro, useCallback Hook.
+
+Para entender de forma mais minuciosa o funcionamento do código, assita ao vídeo da aula.
+
+Como nosso foco estáem obter uma melhor performance, adicionamos um console.log() em cada um dos componentes. Ao abirmos o console do navegador, veremos o console presente em cada componente renderizado com sucesso. Em seguida, ao limparmos o console e clicarmos no botão "Increment Age", todos os consoles possíveis acabarão aparecendo novamente, acarretando em problemas de desempenho (principalmente se o sistema for muito grande).
+
+Para resolver isto, temos que restringir os renders apenas aos componentes que precisam ser renderizados. E para isso, usamos o Reac.memo.
+O React.memo é um componente de ordem superior que immpedirá que um componente funcional seja renderizado/finalizado se seus adereços ou estado não mudarem. (linha export de cada componente filho presente em ParentComponente.js)
+
+Obs: O Reac.memo não tem relação com Hooks. Tem sido apenas um recurso.
+
+Ao aplicarmos o React.memo diminuimos os logs, mas ainda não está 100% certo porque quando clicamos no "Increment Age", o botão "Increment Salary" acaba sendo renderizado. E se eu clicar em "Increment Salary" o botão "Increment Age" também é renderizado. Mas por que apenas os botões são renderizados novamente de forma indesejada?
+	R: Isso ocorre porque uma nova função é criada a cada tempo em que o componente pai renderiza, e ao lidar com funções, sempre temos que considerar a igualadade de refs, mesmo que as duas funções tenham o mesmo comportamento. Isso não significa que sejam iguais entre si.
+Então como dizemos ao React que não há necessidade de criar uma "nova" função de "Increment Salary" enquanto clicamos em "Increment Age" por exemplo?
+	R: Usamos o useCallback Hook
+
+O que é useCallback Hook?
+	useCallback é um hook que retornará uma versão memorizada da função de callback(retorno) de chamada que só será alterada se uma das dependências tiver sido alterada.
+Por que precisamos usar o useCallBack?
+	É útil ao passar callbaks(retorno) de chamada para componentes filhos otimizados que dependem da igualdade de referência para evitar renderizações desnecessárias.
+Como usa-lo? Segue o passo a passo:
+	1º) Chamamos o useCallback . (linha 1 em ParentComponent.js);
+	2º) Precisamos chama-lo, aceitando uma função como seu parâmetro e então um array como seu segundo parâmetro. (linha 10 e 12, 14 e 16 em ParentComponent.js);
+		O segundo parâmetro é a lista de dependências. (linha 12 e 16);

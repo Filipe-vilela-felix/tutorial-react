@@ -1,13 +1,12 @@
-import './App.css' 
-import DataFetchingOne from './components/DataFetchingOne'
-import DataFetchingTwo from './components/DataFetchingTwo'
+import React from 'react'
+import './App.css'
+import ParentComponent from './components/ParentComponent'
 
 function App() {
 	return (
-    <div className="App">
-      {/* <DataFetchingOne /> */}
-      <DataFetchingTwo />
-    </div>
+		<div className="App">
+			<ParentComponent />
+		</div>
 	)
 }
 
