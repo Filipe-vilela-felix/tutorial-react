@@ -1760,3 +1760,25 @@ Como usa-lo? Segue o passo a passo:
 	1º) Chamamos o useCallback . (linha 1 em ParentComponent.js);
 	2º) Precisamos chama-lo, aceitando uma função como seu parâmetro e então um array como seu segundo parâmetro. (linha 10 e 12, 14 e 16 em ParentComponent.js);
 		O segundo parâmetro é a lista de dependências. (linha 12 e 16);
+
+
+aula_70: useMemo Hook
+
+Além useCallback, visto na aula passada, como otimização de desempenho, também temos o useMemo Hook.
+
+useMemo é um Hook que só irá recalcular o valor armazenado em chache quando uma das dependências tiver alterado. Essa otimização serve para evitar calculos pesados em cada renderização.
+
+Nesta aula, aprenderemos a usar o useMemo, através de um exemplo:
+	Criaremos dois botões onde cada um terá sua própria funcionalidade de incremento de contagem.
+	A diferença entre os botões, é que o primeiro possui uma fucionalidade cuja lógica dirá se o incremento é par ou ímpar.
+	E para entender sobre o useMemo, a lógica aplicada deverá ser lenta e pesada para sua atualização, atrasando todo o componente, inlcusive o outro botão.
+
+A maneira de usar o useMemo é muito semelhante a como usar o useCallback. Segue o passo a passo:
+	1º) Importamos o useMemo no react. (linha 1);
+	2º) Chamaremos o useMemo. Como primeiro argumento, passamos a função cujo valor de retorno precisa ser descontado em nosso exemplo. Essa seria a função de seta para calcular se um número é par ou ímpar. E como segundo parâmetro, precisamos especificar as dependências, e nesse caso, depende do valor de counterOne. (linha 15 a 19)
+		Ou seja, sempre que o counterOne muda, estamos dizendo ao React para calcular o valor e não usar o valor em cache.
+
+Feio isso, as atualizações ficam muito mais rápidas para a função em que não há necessidade de saber se é par ou ímpar.
+
+Diferença entre o useMemo e useCallback:
+	A diferença é que o useCallback armazena em cache a própria instância da função fornecida, enquando o useMemo invoca a função forncida em cache seu resultado.
