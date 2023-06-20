@@ -1782,3 +1782,22 @@ Feio isso, as atualizações ficam muito mais rápidas para a função em que n�
 
 Diferença entre o useMemo e useCallback:
 	A diferença é que o useCallback armazena em cache a própria instância da função fornecida, enquando o useMemo invoca a função forncida em cache seu resultado.
+
+
+aula_71: useRef Hook (Part 1)
+
+Este hook torna possível acessar o nós DOM diretamente dentro dos componenentes funcionais.
+
+Para melhor compreensão, usaremos o useRef para dar foco em um elemento input assim que a página for carregada. Segue abaixo o caso de uso de formulário de login:
+
+- Primeiramente, precisamos implementar o useEffect(), no lugar do componentDidMount(), pois queremos que a execução de foco seja executada apenas uma vez após a execução do useEffect().
+
+- Então importamos o useEffect e o chamamos dentro do componente. E tal função deve ter uma função de seta como seu primeiro argumento e uma matriz de dependência como seu segundo argumento. (linhas 1, 6 e 9);
+
+Obs: A matriz deve ser vazia, pois quermos que essa função seja executada apenas uma vez. (linha 9);
+
+- Note que dentro da função há um comentário, apenas para expecificar o que será feito lá, focar o elemento de entrada. E a maneira como faremos isso é usar o useRef Hook. E para isso, segue as três etapas simples:
+	1ª) Importar o useRef. (linha 1);
+	2ª) Criar uma variável ref chamando o useRef e passando o valor inicial. (linha 4);
+		Sempre que criarmos um ref, precisamos anexa-lo ao elemento input. (linha 13);
+	3ª) Chamar o método de foco, no caso o inputRef, dentro da função de seta e especificar o foco. (linha 13 para linha 8);

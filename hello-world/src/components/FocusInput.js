@@ -1,24 +1,18 @@
-import React, { Component } from 'react'
-import Input from './Input'
+import React, { useEffect, useRef } from 'react'
 
-class FocusInput extends Component {
-    constructor() {
-        super()
-        this.componentRef = React.createRef()
-    }
+function FocusInput() {
+    const inputRef = useRef(null)
 
-    clickHandler = () => {
-        this.componentRef.current.focusInput()
-    }
-    
-    render() {
-        return (
-            <div>
-                <Input ref={this.componentRef} />
-                <button onClick={this.clickHandler}>Focus Input</button>
-            </div>
-        )
-    }
+    useEffect(() => {
+        // focus the input element
+        inputRef.current.focus()
+    }, [])
+
+    return (
+        <div>
+            <input ref={inputRef} type='text' />
+        </div>
+    )
 }
 
-export default FocusInput 
+export default FocusInput
