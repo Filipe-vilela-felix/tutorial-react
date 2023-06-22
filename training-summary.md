@@ -1801,3 +1801,23 @@ Obs: A matriz deve ser vazia, pois quermos que essa função seja executada apen
 	2ª) Criar uma variável ref chamando o useRef e passando o valor inicial. (linha 4);
 		Sempre que criarmos um ref, precisamos anexa-lo ao elemento input. (linha 13);
 	3ª) Chamar o método de foco, no caso o inputRef, dentro da função de seta e especificar o foco. (linha 13 para linha 8);
+
+
+aula_72: useRef Hook (Part 2)
+
+Nesta aula, veremos um outro cenário possível para este gancho.
+
+para entender melhor o cenário, teremos também um componente de classe para fazer uma comparação.
+
+Como o nome do componente de classe sujere, vou implementar um cronômetro de intervalo que leva cada segundo e exibe o valor no navegador.
+Para isso, seguimos as etapas:
+	- Criamos um campo de instância, ou uma propriedade de classe que apontará para o timer de intervalo. (linha 4 em ClassTimer.js);
+	- Criamos um constructor, e dentro dele, criamos uma variável de estado chamada timer, que por sua vez, será inicializada com 0. (linha 5 a 10 em ClassTimer.js);
+	- Criamos o componentDidMount() e o componentWillUnMount() para configurar e limpar nosso timer:
+		- No componentDidMount() criamos um intervalo que será igual a setInterval, que por sua vez, aceitará dois argumentos. O primeiro é uma função de callback onde incrementamos a variável de estado mais 1. O segundo argumento é de mil milisegundos, que é o intervalo para o cronômetro. (linha 12 a 16 em ClassTimer.js);
+		- No componentWillUnMount() limpamos o cronômetro, no caso, o intevalo. (linha 18 a 20 em ClassTimer.js);
+	- Finalmente no JSX, renderizamos o timer. (linha 25 em ClassTimer.js);
+	- E por fim, criamos um botão que limpará o temporizador de intervalo em um clicar. (linha 26 em ClassTimer.js);
+
+Agora, iplementamos a mesma funcionalidade no componente funcional:
+	Obs: Para entender como implementamos a mesma funcionalidade no componente funcinal, assista ao vídeo https://www.youtube.com/watch?v=LWg0OyZQffc&list=PLC3y8-rFHvwgg3vaYJgHGnModB54rxOk3&index=72 a partir do tempo 4:00.
